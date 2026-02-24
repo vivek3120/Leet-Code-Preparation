@@ -1,4 +1,4 @@
-# Leet-Code-Preparation SQL
+<img width="679" height="311" alt="image" src="https://github.com/user-attachments/assets/e9b4388a-522d-4318-b611-71d0dec948f8" /># Leet-Code-Preparation SQL
 
 ### Combine 2 tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
@@ -39,6 +39,11 @@ LEFT JOIN UnitsSold u
     AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id;
 
+_____________________________________________________________________________________________________
+
+### 1731. The Number of Employees Which Report to Each Employee
+select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
+group by e.employee_id, e.name order by e.employee_id
 
 
 
