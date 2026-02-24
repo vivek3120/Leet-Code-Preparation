@@ -1,4 +1,4 @@
-<img width="679" height="311" alt="image" src="https://github.com/user-attachments/assets/e9b4388a-522d-4318-b611-71d0dec948f8" /># Leet-Code-Preparation SQL
+# Leet-Code-Preparation SQL
 
 ### Combine 2 tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
