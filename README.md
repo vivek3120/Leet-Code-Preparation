@@ -45,6 +45,30 @@ ________________________________________________________________________________
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
 
+_____________________________________________________________________________________________________
+
+### 3793. Find Users with High Token Usage
+SELECT 
+    p.user_id,
+    COUNT(*) AS prompt_count,
+    ROUND(AVG(CAST(tokens AS DECIMAL(10,2))), 2) AS avg_tokens
+FROM prompts p
+GROUP BY p.user_id
+HAVING 
+    COUNT(*) >= 3
+    AND MAX(p.tokens) > AVG(p.tokens)
+ORDER BY 
+    avg_tokens DESC,
+    user_id ASC;
+
+
+
+
+
+
+
+
+
 
 
 SELECT 
