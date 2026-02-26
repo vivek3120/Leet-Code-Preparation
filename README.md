@@ -60,6 +60,13 @@ HAVING
 ORDER BY 
     avg_tokens DESC,
     user_id ASC;
+______________________________________________________________________________________________________
+
+### 511. Game Play Analysis I
+select player_id, first_login  from(select player_id, event_date as first_login,
+row_number() over (partition by player_id  order by event_date asc) as row_num
+ from activity ) a
+ where row_num=1
 
 
 
