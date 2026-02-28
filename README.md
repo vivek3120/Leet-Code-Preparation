@@ -81,22 +81,9 @@ JOIN Activity b
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
 _________________________________________________________________________________________________________
+### 1667. Fix Names in a Table
 
-
-
-
-
-
-
-
-
-
-
-
-SELECT 
-    user_id,
-    COUNT(follower_id) AS followers_count
-FROM Followers
-GROUP BY user_id
-ORDER BY user_id ASC;
-
+select user_id, 
+ UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
+from users
+order by user_id
