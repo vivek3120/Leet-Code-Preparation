@@ -87,3 +87,14 @@ select user_id,
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
 from users
 order by user_id
+_________________________________________________________________________________________________________
+### 1633. Percentage of Users Attended a Contest
+
+SELECT 
+    r.contest_id,
+    ROUND(COUNT(r.user_id) * 100.0 / 
+          (SELECT COUNT(*) FROM Users), 2) AS percentage
+FROM Register r
+GROUP BY r.contest_id
+ORDER BY percentage DESC, r.contest_id ASC;
+_________________________________________________________________________________________________________
