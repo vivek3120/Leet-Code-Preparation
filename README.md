@@ -123,4 +123,15 @@ CASE
 FROM Samples
 ORDER BY sample_id;
 _________________________________________________________________________________________________________
-
+### 177. Nth Highest Salary
+CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
+BEGIN
+    RETURN (
+        /* Write your T-SQL query statement below. */
+        select max(salary)
+        from(
+select salary, dense_rank() over (order by salary desc) as dns from Employee
+        ) d 
+        where dns=@N
+    );
+END
