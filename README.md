@@ -154,3 +154,10 @@ JOIN Person p2
   ON p1.email = p2.email
  AND p1.id > p2.id;
  ____________________________________________________________________________________________________________
+### 180. Consecutive Numbers
+select distinct consecutivenums from(select num as consecutivenums,
+lead(num,1) over (order by id asc) as lnum1,
+lead(num,2) over (order by id asc) as lnum2
+ from logs
+) k where consecutivenums =lnum1
+and consecutivenums =lnum2
