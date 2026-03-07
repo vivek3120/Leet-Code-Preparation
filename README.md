@@ -161,3 +161,6 @@ lead(num,2) over (order by id asc) as lnum2
  from logs
 ) k where consecutivenums =lnum1
 and consecutivenums =lnum2
+_____________________________________________________________________________________________________________
+### 584. Find Customer Referee
+select name from Customer where referee_id !=2 or referee_id is null
