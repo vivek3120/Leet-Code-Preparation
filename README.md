@@ -164,3 +164,10 @@ and consecutivenums =lnum2
 _____________________________________________________________________________________________________________
 ### 584. Find Customer Referee
 select name from Customer where referee_id !=2 or referee_id is null
+_____________________________________________________________________________________________________________
+### 586. Customer Placing the Largest Number of Orders
+SELECT top 1 customer_number
+FROM Orders
+GROUP BY customer_number
+ORDER BY COUNT(*) DESC
+;
