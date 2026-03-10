@@ -182,3 +182,8 @@ WHERE NOT EXISTS (
     WHERE o.sales_id = s.sales_id
       AND c.name = 'RED'
 );
+______________________________________________________________________________________________________________
+### 595. Big Countries
+select name, population, area from World where
+area>= 3000000
+or population>= 25000000
