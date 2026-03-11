@@ -187,3 +187,6 @@ ________________________________________________________________________________
 select name, population, area from World where
 area>= 3000000
 or population>= 25000000
+_____________________________________________________________________________________________________
+### 175. Combine Two Tables
+select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
