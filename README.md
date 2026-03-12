@@ -187,6 +187,11 @@ ________________________________________________________________________________
 select name, population, area from World where
 area>= 3000000
 or population>= 25000000
-_____________________________________________________________________________________________________
+____________________________________________________________________________________________________________
 ### 175. Combine Two Tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
+_____________________________________________________________________________________________________________
+### 596. Classes With at Least 5 Students
+select class from courses
+group by class
+having count(class)>=5
