@@ -195,3 +195,8 @@ ________________________________________________________________________________
 select class from courses
 group by class
 having count(class)>=5
+______________________________________________________________________________________________________________
+### 577. Employee Bonus
+select e.name, b.bonus  from Employee e left join bonus b
+on e.empid=b.empid where b.bonus<1000
+or b.bonus is null
