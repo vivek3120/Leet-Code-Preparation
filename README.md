@@ -200,3 +200,14 @@ ________________________________________________________________________________
 select e.name, b.bonus  from Employee e left join bonus b
 on e.empid=b.empid where b.bonus<1000
 or b.bonus is null
+______________________________________________________________________________________________________________
+### 610. Triangle Judgement
+select x,y,z,
+    CASE
+        WHEN x + y > z 
+         AND x + z > y 
+         AND y + z > x
+        THEN 'Yes'
+        ELSE 'No'
+    END AS triangle
+FROM Triangle;
