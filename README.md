@@ -214,3 +214,8 @@ FROM Triangle;
 _____________________________________________________________________________________________________________
 ### 183. Customers Who Never Order
 select c.name as Customers from Customers c left join Orders o on c.id=o.customerId where o.customerid is null
+______________________________________________________________________________________________________________
+### 197. Rising Temperature
+select w.id from Weather w join weather e on e.id=e.id
+where w.recorddate= DATEADD(day, 1, e.recordDate)
+and w.temperature>e.temperature
