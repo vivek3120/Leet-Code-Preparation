@@ -219,3 +219,8 @@ ________________________________________________________________________________
 select w.id from Weather w join weather e on e.id=e.id
 where w.recorddate= DATEADD(day, 1, e.recordDate)
 and w.temperature>e.temperature
+______________________________________________________________________________________________________________
+### 1075. Project Employees I
+select p.project_id, round(avg(1.00*e.experience_years),2)  as average_years from project p join employee e on e.employee_id=p.employee_id
+group by p.project_id
+order by p.project_id
