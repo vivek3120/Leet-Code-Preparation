@@ -224,3 +224,15 @@ ________________________________________________________________________________
 select p.project_id, round(avg(1.00*e.experience_years),2)  as average_years from project p join employee e on e.employee_id=p.employee_id
 group by p.project_id
 order by p.project_id
+_______________________________________________________________________________________________________________
+### 610. Triangle Judgement
+select x,y,z,
+    CASE
+        WHEN x + y > z 
+         AND x + z > y 
+         AND y + z > x
+        THEN 'Yes'
+        ELSE 'No'
+    END AS triangle
+FROM Triangle;
+_________________________________________________________________________________________________________________
