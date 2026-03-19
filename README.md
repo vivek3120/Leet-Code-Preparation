@@ -236,3 +236,12 @@ select x,y,z,
     END AS triangle
 FROM Triangle;
 _________________________________________________________________________________________________________________
+### 1280. Students and Examinations
+select s.student_id, s.student_name, su.subject_name,
+ count(e.subject_name) as attended_exams from Students s 
+ CROSS JOIN Subjects su
+LEFT JOIN Examinations e
+    ON e.student_id = s.student_id
+    AND e.subject_name = su.subject_name
+group by s.student_id, s.student_name, su.subject_name
+order by student_id, subject_name
