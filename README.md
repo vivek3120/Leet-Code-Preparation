@@ -245,3 +245,8 @@ LEFT JOIN Examinations e
     AND e.subject_name = su.subject_name
 group by s.student_id, s.student_name, su.subject_name
 order by student_id, subject_name
+_________________________________________________________________________________________________________________
+### 1527. Patients With a Condition
+select patient_id , patient_name , conditions from patients
+where conditions like '% DIAB1%'
+or conditions like 'DIAB1%'
