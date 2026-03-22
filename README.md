@@ -250,3 +250,7 @@ ________________________________________________________________________________
 select patient_id , patient_name , conditions from patients
 where conditions like '% DIAB1%'
 or conditions like 'DIAB1%'
+_________________________________________________________________________________________________________________
+### 2356. Number of Unique Subjects Taught by Each Teacher
+select teacher_id,count(distinct subject_id)as cnt from teacher 
+group by teacher_id
