@@ -254,3 +254,9 @@ ________________________________________________________________________________
 ### 2356. Number of Unique Subjects Taught by Each Teacher
 select teacher_id,count(distinct subject_id)as cnt from teacher 
 group by teacher_id
+_________________________________________________________________________________________________________________
+### 1327. List the Products Ordered in a Period
+select p.product_name, SUM(o.unit) AS unit from products p
+join orders o on o.product_id=p.product_id
+where order_date>'2020-01-31' and order_date<'2020-03-01'
+group by product_name having SUM(o.unit)>=100
