@@ -263,3 +263,6 @@ group by product_name having SUM(o.unit)>=100
 ________________________________________________________________________________________________________________
 ### 1693. Daily Leads and Partners
 select date_id, make_name,count(distinct lead_id)  as unique_leads,count(distinct partner_id)   as unique_partners from dailysales group by date_id,make_name
+_______________________________________________________________________________________________________________
+### 178. Rank Scores
+select score, dense_rank() over(order by score desc) as rank from Scores
