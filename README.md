@@ -266,3 +266,11 @@ select date_id, make_name,count(distinct lead_id)  as unique_leads,count(distinc
 _______________________________________________________________________________________________________________
 ### 178. Rank Scores
 select score, dense_rank() over(order by score desc) as rank from Scores
+________________________________________________________________________________________________________________
+### 1393. Capital Gain/Loss
+select stock_name,
+sum(case when operation='Sell' then price
+when operation='Buy' then -price
+end)
+as capital_gain_loss from stocks
+group by stock_name
