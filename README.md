@@ -301,3 +301,19 @@ users u left join orders o on u.user_id = o.buyer_id
  and o.order_date >= '2019-01-01'
    AND o.order_date < '2020-01-01'
 GROUP BY u.user_id, u.join_date;
+_______________________________________________________________________________________________________________
+### 184. Department Highest Salary
+SELECT
+    d.name AS Department,
+    e.name AS Employee,
+    e.salary AS Salary
+FROM Employee e
+JOIN Department d
+  ON e.departmentId = d.id
+JOIN (
+    SELECT departmentId, MAX(salary) AS max_salary
+    FROM Employee
+    GROUP BY departmentId
+) m
+  ON e.departmentId = m.departmentId
+ AND e.salary = m.max_salary;
