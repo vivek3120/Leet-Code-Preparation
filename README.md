@@ -338,3 +338,14 @@ FROM (SELECT DISTINCT product_id FROM Products) p
 LEFT JOIN ranked_prices r
     ON p.product_id = r.product_id
    AND r.rn = 1;
+_________________________________________________________________________________________________________________
+### 1978. Employees Whose Manager Left the Company
+SELECT e.employee_id FROM Employees e
+WHERE e.salary < 30000
+  AND e.manager_id IS NOT NULL
+  AND NOT EXISTS (
+      SELECT 1
+      FROM Employees m
+      WHERE m.employee_id = e.manager_id
+  )
+ORDER BY e.employee_id;
