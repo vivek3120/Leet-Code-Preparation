@@ -349,3 +349,10 @@ WHERE e.salary < 30000
       WHERE m.employee_id = e.manager_id
   )
 ORDER BY e.employee_id;
+_________________________________________________________________________________________________________________
+### 1407. Top Travellers
+select u.name, COALESCE(SUM(r.distance), 0) AS travelled_distance
+ from users u left join 
+rides r on r.user_id= u.id 
+group by u.name , u.id
+order by travelled_distance desc, u.name asc
