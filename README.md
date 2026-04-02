@@ -356,3 +356,9 @@ select u.name, COALESCE(SUM(r.distance), 0) AS travelled_distance
 rides r on r.user_id= u.id 
 group by u.name , u.id
 order by travelled_distance desc, u.name asc
+__________________________________________________________________________________________________________________
+### 3436. Find Valid Emails
+SELECT user_id, email
+FROM Users
+WHERE email REGEXP '^[A-Za-z0-9_]+@[A-Za-z]+\\.com$'
+ORDER BY user_id;
