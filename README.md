@@ -280,21 +280,17 @@ SELECT
     'Low Salary' AS category,
     SUM(CASE WHEN income < 20000 THEN 1 ELSE 0 END) AS accounts_count
 FROM Accounts
-
 UNION ALL
-
 SELECT 
     'Average Salary',
     SUM(CASE WHEN income BETWEEN 20000 AND 50000 THEN 1 ELSE 0 END)
 FROM Accounts
-
 UNION ALL
-
 SELECT 
     'High Salary',
     SUM(CASE WHEN income > 50000 THEN 1 ELSE 0 END)
 FROM Accounts;
-________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
 ### 1158. Market Analysis I
 select u.user_id as buyer_id,u.join_date, count(o.order_id) as orders_in_2019 from 
 users u left join orders o on u.user_id = o.buyer_id 
