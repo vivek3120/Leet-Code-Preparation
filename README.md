@@ -358,3 +358,9 @@ SELECT user_id, email
 FROM Users
 WHERE email REGEXP '^[A-Za-z0-9_]+@[A-Za-z]+\\.com$'
 ORDER BY user_id;
+___________________________________________________________________________________________________________________
+### 1517. Find Users With Valid E-Mails
+select user_id, name, mail from users 
+WHERE RIGHT(MAIL,13) = '@leetcode.com' AND 
+LEFT(MAIL,1) LIKE '[a-zA-Z]%' AND
+    LEFT(MAIL, LEN(MAIL) - 13) NOT LIKE '%[^a-zA-Z0-9_.-]%';
