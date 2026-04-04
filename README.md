@@ -360,7 +360,7 @@ WHERE email REGEXP '^[A-Za-z0-9_]+@[A-Za-z]+\\.com$'
 ORDER BY user_id;
 ___________________________________________________________________________________________________________________
 ### 1517. Find Users With Valid E-Mails
-select user_id, name, mail from users 
-WHERE RIGHT(MAIL,13) = '@leetcode.com' AND 
-LEFT(MAIL,1) LIKE '[a-zA-Z]%' AND
-    LEFT(MAIL, LEN(MAIL) - 13) NOT LIKE '%[^a-zA-Z0-9_.-]%';
+SELECT user_id, name, mail FROM Users
+WHERE RIGHT(mail, 13) COLLATE Latin1_General_CS_AS like '@leetcode.com'
+AND LEFT(mail, 1) LIKE '[a-zA-Z]'
+AND LEFT(mail, LEN(mail) - 13) NOT LIKE '%[^a-zA-Z0-9_.-]%';
