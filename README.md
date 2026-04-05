@@ -364,3 +364,16 @@ SELECT user_id, name, mail FROM Users
 WHERE RIGHT(mail, 13) COLLATE Latin1_General_CS_AS like '@leetcode.com'
 AND LEFT(mail, 1) LIKE '[a-zA-Z]'
 AND LEFT(mail, LEN(mail) - 13) NOT LIKE '%[^a-zA-Z0-9_.-]%';
+___________________________________________________________________________________________________________________
+### 3465. Find Products with Valid Serial Numbers
+SELECT
+    p.product_id,
+    p.product_name,
+    p.description
+FROM products p
+WHERE
+       p.description COLLATE Latin1_General_CS_AS LIKE 'SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][^A-Za-z0-9]%'
+    OR p.description COLLATE Latin1_General_CS_AS LIKE '%[^A-Za-z0-9]SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9][^A-Za-z0-9]%'
+    OR p.description COLLATE Latin1_General_CS_AS LIKE '%[^A-Za-z0-9]SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
+    OR p.description COLLATE Latin1_General_CS_AS LIKE 'SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
+ORDER BY p.product_id;
