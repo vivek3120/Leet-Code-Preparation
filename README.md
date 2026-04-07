@@ -377,3 +377,4 @@ WHERE
     OR p.description COLLATE Latin1_General_CS_AS LIKE '%[^A-Za-z0-9]SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
     OR p.description COLLATE Latin1_General_CS_AS LIKE 'SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
 ORDER BY p.product_id;
+_____________________________________________________________________________________________________________________
