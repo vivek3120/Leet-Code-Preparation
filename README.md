@@ -2,11 +2,11 @@
 
 ### Combine 2 tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
-________________________________________________________________________________________________
+__________________________________________________________________________________________________
 
 ### 181. Employees Earning More Than Their Managers
 select e.name as Employee from Employee e join Employee m on e.managerid=m.id where m.salary<e.salary ;
-_________________________________________________________________________________________________
+___________________________________________________________________________________________________
 
 ### 1204. Last Person to Fit in the Bus
 SELECT top 1 person_name
@@ -22,7 +22,7 @@ ________________________________________________________________________________
 SELECT customer_id FROM Customer GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key) =  (SELECT COUNT(*) FROM Product);
 
-_____________________________________________________________________________________________________
+___________________________________________________________________________________________________
 
 ### 1251. Average Selling Price
 SELECT 
@@ -60,14 +60,14 @@ HAVING
 ORDER BY 
     avg_tokens DESC,
     user_id ASC;
-______________________________________________________________________________________________________
+____________________________________________________________________________________________________
 
 ### 511. Game Play Analysis I
 select player_id, first_login  from(select player_id, event_date as first_login,
 row_number() over (partition by player_id  order by event_date asc) as row_num
  from activity ) a
  where row_num=1
- _____________________________________________________________________________________________________
+ ___________________________________________________________________________________________________
 
  ### 1661. Average Time of Process per Machine
 
@@ -80,14 +80,14 @@ JOIN Activity b
    AND a.activity_type = 'start'
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 1667. Fix Names in a Table
 
 select user_id, 
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
 from users
 order by user_id
-_________________________________________________________________________________________________________
+________________________________________________________________________________________________________
 ### 1633. Percentage of Users Attended a Contest
 
 SELECT 
