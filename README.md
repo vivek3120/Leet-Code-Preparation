@@ -378,3 +378,7 @@ WHERE
     OR p.description COLLATE Latin1_General_CS_AS LIKE 'SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
 ORDER BY p.product_id;
 _______________________________________________________________________________________________________________________
+### 176. Second Highest Salary
+select max(salary) as secondhighestsalary 
+from   employee 
+where salary<(select max(salary) from employee)
