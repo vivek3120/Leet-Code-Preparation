@@ -383,7 +383,7 @@ select max(salary) as secondhighestsalary
 from   employee 
 where salary<(select max(salary) from employee)
 _____________________________________________________________________________________________________________________
-## 619. Biggest Single Number
+### 619. Biggest Single Number
 SELECT MAX(num) AS num
 FROM mynumbers
 WHERE num IN (
@@ -392,3 +392,11 @@ WHERE num IN (
     GROUP BY num
     HAVING COUNT(*) = 1
 );
+_____________________________________________________________________________________________________________________
+### 3220. Odd and Even Transactions
+select transaction_date,
+    SUM(CASE WHEN amount % 2 = 1 THEN amount ELSE 0 END) AS odd_sum,
+    SUM(CASE WHEN amount % 2 = 0 THEN amount ELSE 0 END) AS even_sum
+ from transactions 
+ group by transaction_date
+ order by transaction_date asc
