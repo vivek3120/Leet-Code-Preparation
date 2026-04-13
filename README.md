@@ -401,3 +401,10 @@ select transaction_date,
  group by transaction_date
  order by transaction_date asc
 _____________________________________________________________________________________________________________________
+### 1193. Monthly Transactions I
+select  FORMAT(trans_date, 'yyyy-MM') AS month,country,count(*) as trans_count,
+sum(case when state = 'approved' THEN 1 ELSE 0 END) AS approved_count,
+sum(amount) as trans_total_amount,
+SUM(CASE WHEN state = 'approved' THEN amount ELSE 0 END) AS approved_total_amount
+from transactions
+GROUP BY FORMAT(trans_date, 'yyyy-MM'), country;
