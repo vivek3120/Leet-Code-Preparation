@@ -409,3 +409,12 @@ SUM(CASE WHEN state = 'approved' THEN amount ELSE 0 END) AS approved_total_amoun
 from transactions
 GROUP BY FORMAT(trans_date, 'yyyy-MM'), country;
 ____________________________________________________________________________________________________________________
+### 3497. Analyze Subscription Conversion 
+select user_id,
+round(avg(case when activity_type='free_trial' then activity_duration*1.0 end),2)  as trial_avg_duration, 
+round(avg(case when activity_type='paid' then activity_duration*1.0  end),2)  as paid_avg_duration from useractivity
+group by user_id
+HAVING 
+SUM(CASE WHEN activity_type = 'free_trial' THEN 1 ELSE 0 END) > 0
+AND SUM(CASE WHEN activity_type = 'paid' THEN 1 ELSE 0 END) > 0
+order by user_id
