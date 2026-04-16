@@ -418,3 +418,11 @@ HAVING
 SUM(CASE WHEN activity_type = 'free_trial' THEN 1 ELSE 0 END) > 0
 AND SUM(CASE WHEN activity_type = 'paid' THEN 1 ELSE 0 END) > 0
 order by user_id
+___________________________________________________________________________________________________________________
+### 608. Tree Node
+select id,
+case when p_id is null then 'Root'
+when id in (select distinct p_id from tree) then 'Inner'
+else 'Leaf'
+ end as type 
+ from tree
