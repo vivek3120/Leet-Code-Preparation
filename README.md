@@ -426,3 +426,12 @@ when id in (select distinct p_id from tree) then 'Inner'
 else 'Leaf'
  end as type 
  from tree
+__________________________________________________________________________________________________________________
+### 602. Friend Requests II: Who Has the Most Friends
+SELECT top 1 id, COUNT(*) AS num
+FROM
+(SELECT requester_id AS id FROM RequestAccepted
+ UNION ALL SELECT accepter_id AS id FROM RequestAccepted
+) t
+GROUP BY id
+ORDER BY num DESC;
