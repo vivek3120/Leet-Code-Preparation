@@ -458,3 +458,4 @@ GROUP BY customer_id
 ) f
 ON d.customer_id = f.customer_id
 AND d.order_date = f.first_order_date;
+__________________________________________________________________________________________________________________
