@@ -569,3 +569,48 @@ FROM moving_amount
 WHERE day_count = 7
 ORDER BY visited_on;
 __________________________________________________________________________________________________________
+### 3580. Find Consistently Improving Employees
+WITH ranked_reviews AS (
+SELECT
+employee_id,
+review_date,
+rating,
+ROW_NUMBER() OVER (
+PARTITION BY employee_id
+ORDER BY review_date DESC
+) AS rn
+FROM performance_reviews
+),
+last_three AS (
+SELECT
+employee_id,
+review_date,
+rating,
+ROW_NUMBER() OVER (
+PARTITION BY employee_id
+ORDER BY review_date ASC
+) AS chronological_rn
+FROM ranked_reviews
+WHERE rn <= 3
+),
+pivoted AS (
+SELECT
+employee_id,
+MAX(CASE WHEN chronological_rn = 1 THEN rating END) AS first_rating,
+MAX(CASE WHEN chronological_rn = 2 THEN rating END) AS second_rating,
+MAX(CASE WHEN chronological_rn = 3 THEN rating END) AS third_rating,
+COUNT(*) AS review_count
+FROM last_three
+GROUP BY employee_id
+)
+SELECT
+e.employee_id,
+e.name,
+p.third_rating - p.first_rating AS improvement_score
+FROM pivoted p
+JOIN employees e
+ON p.employee_id = e.employee_id
+WHERE p.review_count = 3
+AND p.first_rating < p.second_rating
+AND p.second_rating < p.third_rating
+ORDER BY improvement_score DESC, e.name ASC;
