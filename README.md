@@ -642,3 +642,25 @@ FROM category_pairs
 GROUP BY category1, category2
 HAVING COUNT(DISTINCT user_id) >= 3
 ORDER BY customer_count DESC, category1 ASC, category2 ASC;
+______________________________________________________________________________________________________
+### 185. Department Top Three Salaries
+WITH ranked_salary AS (
+SELECT
+e.id,
+e.name AS employee,
+e.salary,
+e.departmentId,
+DENSE_RANK() OVER (
+PARTITION BY e.departmentId
+ORDER BY e.salary DESC
+) AS salary_rank
+FROM Employee e
+)
+SELECT
+d.name AS Department,
+r.employee AS Employee,
+r.salary AS Salary
+FROM ranked_salary r
+JOIN Department d
+ON r.departmentId = d.id
+WHERE r.salary_rank <= 3;
