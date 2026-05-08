@@ -760,3 +760,4 @@ AND scroll_count >= 5
 AND CAST(click_count AS DECIMAL(10, 2)) / scroll_count < 0.20
 AND purchase_count = 0
 ORDER BY scroll_count DESC, session_id ASC;
+__________________________________________________________________________________________________
