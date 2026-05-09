@@ -761,3 +761,28 @@ AND CAST(click_count AS DECIMAL(10, 2)) / scroll_count < 0.20
 AND purchase_count = 0
 ORDER BY scroll_count DESC, session_id ASC;
 __________________________________________________________________________________________________
+### 601. Human Traffic of Stadium
+WITH filtered AS (
+SELECT
+id,
+visit_date,
+people,
+id - ROW_NUMBER() OVER (ORDER BY id) AS grp
+FROM Stadium
+WHERE people >= 100
+),
+valid_groups AS (
+SELECT
+grp
+FROM filtered
+GROUP BY grp
+HAVING COUNT(*) >= 3
+)
+SELECT
+f.id,
+f.visit_date,
+f.people
+FROM filtered f
+JOIN valid_groups v
+ON f.grp = v.grp
+ORDER BY f.visit_date ASC;
