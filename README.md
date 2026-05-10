@@ -786,3 +786,4 @@ FROM filtered f
 JOIN valid_groups v
 ON f.grp = v.grp
 ORDER BY f.visit_date ASC;
+__________________________________________________________________________________________________
