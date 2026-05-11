@@ -787,3 +787,63 @@ JOIN valid_groups v
 ON f.grp = v.grp
 ORDER BY f.visit_date ASC;
 __________________________________________________________________________________________________
+### 3482. Analyze Organization Hierarchy
+WITH hierarchy AS (
+    SELECT
+        employee_id,
+        employee_name,
+        manager_id,
+        salary,
+        1 AS level
+    FROM Employees
+    WHERE manager_id IS NULL
+
+    UNION ALL
+
+    SELECT
+        e.employee_id,
+        e.employee_name,
+        e.manager_id,
+        e.salary,
+        h.level + 1 AS level
+    FROM Employees e
+    INNER JOIN hierarchy h
+        ON e.manager_id = h.employee_id
+),
+
+subordinates AS (
+    SELECT
+        employee_id AS manager_id,
+        employee_id AS employee_id,
+        salary
+    FROM Employees
+
+    UNION ALL
+
+    SELECT
+        s.manager_id,
+        e.employee_id,
+        e.salary
+    FROM subordinates s
+    INNER JOIN Employees e
+        ON e.manager_id = s.employee_id
+)
+
+SELECT
+    h.employee_id,
+    h.employee_name,
+    h.level,
+    COUNT(s.employee_id) - 1 AS team_size,
+    SUM(s.salary) AS budget
+FROM hierarchy h
+INNER JOIN subordinates s
+    ON h.employee_id = s.manager_id
+GROUP BY
+    h.employee_id,
+    h.employee_name,
+    h.level
+ORDER BY
+    h.level ASC,
+    budget DESC,
+    h.employee_name ASC
+OPTION (MAXRECURSION 0);
