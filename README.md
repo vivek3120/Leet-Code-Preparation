@@ -847,3 +847,22 @@ ORDER BY
     budget DESC,
     h.employee_name ASC
 OPTION (MAXRECURSION 0);
+___________________________________________________________________________________________________
+### 550. Game Play Analysis IV
+WITH first_login AS (
+SELECT
+player_id,
+MIN(event_date) AS first_date
+FROM Activity
+GROUP BY player_id
+)
+
+SELECT
+ROUND(
+CAST(COUNT(a.player_id) AS FLOAT) / COUNT(f.player_id),
+2
+) AS fraction
+FROM first_login f
+LEFT JOIN Activity a
+ON f.player_id = a.player_id
+AND a.event_date = DATEADD(DAY, 1, f.first_date);
