@@ -856,7 +856,6 @@ MIN(event_date) AS first_date
 FROM Activity
 GROUP BY player_id
 )
-
 SELECT
 ROUND(
 CAST(COUNT(a.player_id) AS FLOAT) / COUNT(f.player_id),
@@ -866,3 +865,9 @@ FROM first_login f
 LEFT JOIN Activity a
 ON f.player_id = a.player_id
 AND a.event_date = DATEADD(DAY, 1, f.first_date);
+__________________________________________________________________________________________________
+### 570. Managers with at Least 5 Direct Reports
+SELECT m.name FROM Employee e
+JOIN Employee m ON e.managerId = m.id
+GROUP BY m.id, m.name
+HAVING COUNT(e.id) >= 5;
