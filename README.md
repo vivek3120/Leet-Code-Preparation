@@ -871,15 +871,19 @@ SELECT m.name FROM Employee e
 JOIN Employee m ON e.managerId = m.id
 GROUP BY m.id, m.name
 HAVING COUNT(e.id) >= 5;
-_
-
-SELECT
-    customer_id
-FROM customer_transactions
-GROUP BY customer_id
-HAVING
-    SUM(CASE WHEN transaction_type = 'purchase' THEN 1 ELSE 0 END) >= 3
-    AND DATEDIFF(MAX(transaction_date), MIN(transaction_date)) >= 30
-    AND
-    SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END) * 1.0 / COUNT(*) < 0.20
-ORDER BY customer_id;
+_______________________________________________________________________________________________________
+### 585. Investments in 2016
+SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
+FROM (
+    SELECT
+        pid,
+        tiv_2015,
+        tiv_2016,
+        lat,
+        lon,
+        COUNT(*) OVER (PARTITION BY tiv_2015) AS same_tiv_2015_count,
+        COUNT(*) OVER (PARTITION BY lat, lon) AS same_location_count
+    FROM Insurance
+) x
+WHERE same_tiv_2015_count > 1
+  AND same_location_count = 1;
