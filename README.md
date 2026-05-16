@@ -887,3 +887,34 @@ FROM (
 ) x
 WHERE same_tiv_2015_count > 1
   AND same_location_count = 1;
+___________________________________________________________________________________________________
+### 1341. Movie Rating
+SELECT results
+FROM
+(
+    SELECT TOP 1
+        u.name AS results,
+        1 AS sort_order
+    FROM MovieRating mr
+    JOIN Users u
+        ON mr.user_id = u.user_id
+    GROUP BY u.user_id, u.name
+    ORDER BY COUNT(*) DESC, u.name ASC
+) A
+
+UNION ALL
+
+SELECT results
+FROM
+(
+    SELECT TOP 1
+        m.title AS results,
+        2 AS sort_order
+    FROM MovieRating mr
+    JOIN Movies m
+        ON mr.movie_id = m.movie_id
+    WHERE mr.created_at >= '2020-02-01'
+      AND mr.created_at < '2020-03-01'
+    GROUP BY m.movie_id, m.title
+    ORDER BY AVG(CAST(mr.rating AS FLOAT)) DESC, m.title ASC
+) B;
