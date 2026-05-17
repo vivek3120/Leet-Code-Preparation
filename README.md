@@ -918,3 +918,60 @@ FROM
     GROUP BY m.movie_id, m.title
     ORDER BY AVG(CAST(mr.rating AS FLOAT)) DESC, m.title ASC
 ) B;
+__________________________________________________________________________________________________________
+### 3626. Find Stores with Inventory Imbalance
+WITH ranked_inventory AS (
+    SELECT
+        i.store_id,
+        i.product_name,
+        i.quantity,
+        i.price,
+        COUNT(*) OVER (PARTITION BY i.store_id) AS product_count,
+
+        ROW_NUMBER() OVER (
+            PARTITION BY i.store_id
+            ORDER BY i.price DESC, i.product_name
+        ) AS expensive_rank,
+
+        ROW_NUMBER() OVER (
+            PARTITION BY i.store_id
+            ORDER BY i.price ASC, i.product_name
+        ) AS cheapest_rank
+    FROM inventory i
+),
+most_expensive AS (
+    SELECT
+        store_id,
+        product_name AS most_exp_product,
+        quantity AS most_exp_quantity
+    FROM ranked_inventory
+    WHERE expensive_rank = 1
+),
+cheapest AS (
+    SELECT
+        store_id,
+        product_name AS cheapest_product,
+        quantity AS cheapest_quantity,
+        product_count
+    FROM ranked_inventory
+    WHERE cheapest_rank = 1
+)
+SELECT
+    s.store_id,
+    s.store_name,
+    s.location,
+    me.most_exp_product,
+    c.cheapest_product,
+    ROUND(
+        CAST(c.cheapest_quantity AS DECIMAL(10, 2)) 
+        / me.most_exp_quantity,
+        2
+    ) AS imbalance_ratio
+FROM stores s
+JOIN most_expensive me
+    ON s.store_id = me.store_id
+JOIN cheapest c
+    ON s.store_id = c.store_id
+WHERE c.product_count >= 3
+  AND me.most_exp_quantity < c.cheapest_quantity
+ORDER BY imbalance_ratio DESC, s.store_name ASC;
