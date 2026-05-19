@@ -1021,3 +1021,37 @@ WHERE rn = 1
   AND monthly_amount < max_historical_amount * 0.50
   AND DATEDIFF(day, first_event_date, last_event_date) >= 60
 ORDER BY days_as_subscriber DESC, user_id ASC;
+___________________________________________________________________________________
+### 3586. Find COVID Recovery Patients
+WITH first_positive AS (
+    SELECT
+        patient_id,
+        MIN(test_date) AS first_positive_date
+    FROM covid_tests
+    WHERE result = 'Positive'
+    GROUP BY patient_id
+),
+first_negative_after_positive AS (
+    SELECT
+        fp.patient_id,
+        fp.first_positive_date,
+        MIN(ct.test_date) AS first_negative_date
+    FROM first_positive fp
+    JOIN covid_tests ct
+        ON fp.patient_id = ct.patient_id
+       AND ct.result = 'Negative'
+       AND ct.test_date > fp.first_positive_date
+    GROUP BY fp.patient_id, fp.first_positive_date
+)
+
+SELECT
+    p.patient_id,
+    p.patient_name,
+    p.age,
+    DATEDIFF(DAY, f.first_positive_date, f.first_negative_date) AS recovery_time
+FROM first_negative_after_positive f
+JOIN patients p
+    ON f.patient_id = p.patient_id
+ORDER BY
+    recovery_time ASC,
+    p.patient_name ASC;
