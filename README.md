@@ -1103,3 +1103,44 @@ WHERE l.latest_score > f.first_score
 ORDER BY
     f.student_id ASC,
     f.subject ASC;
+________________________________________________________________________________________
+### 3611. Find Overbooked Employees
+WITH weekly_meetings AS (
+    SELECT
+        employee_id,
+        DATEADD(
+            DAY,
+            1 - DATEPART(WEEKDAY, meeting_date),
+            CAST(meeting_date AS DATE)
+        ) AS week_start_date,
+        SUM(duration_hours) AS total_meeting_hours
+    FROM meetings
+    GROUP BY
+        employee_id,
+        DATEADD(
+            DAY,
+            1 - DATEPART(WEEKDAY, meeting_date),
+            CAST(meeting_date AS DATE)
+        )
+),
+meeting_heavy AS (
+    SELECT
+        employee_id,
+        COUNT(*) AS meeting_heavy_weeks
+    FROM weekly_meetings
+    WHERE total_meeting_hours > 20
+    GROUP BY employee_id
+)
+
+SELECT
+    e.employee_id,
+    e.employee_name,
+    e.department,
+    mh.meeting_heavy_weeks
+FROM meeting_heavy mh
+JOIN employees e
+    ON mh.employee_id = e.employee_id
+WHERE mh.meeting_heavy_weeks >= 2
+ORDER BY
+    mh.meeting_heavy_weeks DESC,
+    e.employee_name ASC;
