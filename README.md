@@ -1110,7 +1110,7 @@ WITH weekly_meetings AS (
         employee_id,
         DATEADD(
             DAY,
-            1 - DATEPART(WEEKDAY, meeting_date),
+            -DATEDIFF(DAY, '19000101', meeting_date) % 7,
             CAST(meeting_date AS DATE)
         ) AS week_start_date,
         SUM(duration_hours) AS total_meeting_hours
@@ -1119,7 +1119,7 @@ WITH weekly_meetings AS (
         employee_id,
         DATEADD(
             DAY,
-            1 - DATEPART(WEEKDAY, meeting_date),
+            -DATEDIFF(DAY, '19000101', meeting_date) % 7,
             CAST(meeting_date AS DATE)
         )
 ),
