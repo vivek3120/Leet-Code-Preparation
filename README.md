@@ -1144,3 +1144,39 @@ WHERE mh.meeting_heavy_weeks >= 2
 ORDER BY
     mh.meeting_heavy_weeks DESC,
     e.employee_name ASC;
+___________________________________________________________________________________________________
+### 3601. Find Drivers with Improved Fuel Efficiency
+WITH trip_efficiency AS (
+    SELECT
+        driver_id,
+        CASE
+            WHEN MONTH(trip_date) BETWEEN 1 AND 6 THEN 'FIRST_HALF'
+            WHEN MONTH(trip_date) BETWEEN 7 AND 12 THEN 'SECOND_HALF'
+        END AS year_half,
+        distance_km / fuel_consumed AS efficiency
+    FROM trips
+),
+driver_half_avg AS (
+    SELECT
+        driver_id,
+        AVG(CASE WHEN year_half = 'FIRST_HALF' THEN efficiency END) AS first_half_avg,
+        AVG(CASE WHEN year_half = 'SECOND_HALF' THEN efficiency END) AS second_half_avg
+    FROM trip_efficiency
+    GROUP BY driver_id
+)
+
+SELECT
+    d.driver_id,
+    d.driver_name,
+    ROUND(a.first_half_avg, 2) AS first_half_avg,
+    ROUND(a.second_half_avg, 2) AS second_half_avg,
+    ROUND(a.second_half_avg - a.first_half_avg, 2) AS efficiency_improvement
+FROM driver_half_avg a
+JOIN drivers d
+    ON a.driver_id = d.driver_id
+WHERE a.first_half_avg IS NOT NULL
+  AND a.second_half_avg IS NOT NULL
+  AND a.second_half_avg > a.first_half_avg
+ORDER BY
+    efficiency_improvement DESC,
+    d.driver_name ASC;
