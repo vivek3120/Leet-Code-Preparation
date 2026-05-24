@@ -1220,3 +1220,46 @@ HAVING
 ORDER BY
     polarization_score DESC,
     b.title DESC;
+__________________________________________________________________________________
+### 3705. Find Golden Hour Customers
+WITH customer_stats AS (
+    SELECT
+        customer_id,
+        COUNT(*) AS total_orders,
+
+        SUM(
+            CASE
+                WHEN CAST(order_timestamp AS TIME) >= '11:00:00'
+                 AND CAST(order_timestamp AS TIME) <= '14:00:00'
+                    THEN 1
+                WHEN CAST(order_timestamp AS TIME) >= '18:00:00'
+                 AND CAST(order_timestamp AS TIME) <= '21:00:00'
+                    THEN 1
+                ELSE 0
+            END
+        ) AS peak_hour_orders,
+
+        SUM(
+            CASE
+                WHEN order_rating IS NOT NULL THEN 1
+                ELSE 0
+            END
+        ) AS rated_orders,
+
+        AVG(CAST(order_rating AS DECIMAL(10, 2))) AS average_rating
+    FROM restaurant_orders
+    GROUP BY customer_id
+)
+SELECT
+    customer_id,
+    total_orders,
+    ROUND(peak_hour_orders * 100.0 / total_orders, 2) AS peak_hour_percentage,
+    ROUND(average_rating, 2) AS average_rating
+FROM customer_stats
+WHERE total_orders >= 3
+  AND peak_hour_orders * 1.0 / total_orders >= 0.60
+  AND average_rating >= 4.0
+  AND rated_orders * 1.0 / total_orders >= 0.50
+ORDER BY
+    average_rating DESC,
+    customer_id DESC;
