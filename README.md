@@ -1229,12 +1229,9 @@ WITH customer_stats AS (
 
         SUM(
             CASE
-                WHEN CAST(order_timestamp AS TIME) >= '11:00:00'
-                 AND CAST(order_timestamp AS TIME) <= '14:00:00'
-                    THEN 1
-                WHEN CAST(order_timestamp AS TIME) >= '18:00:00'
-                 AND CAST(order_timestamp AS TIME) <= '21:00:00'
-                    THEN 1
+                WHEN CAST(order_timestamp AS TIME) BETWEEN '11:00:00' AND '14:00:00'
+                  OR CAST(order_timestamp AS TIME) BETWEEN '18:00:00' AND '21:00:00'
+                THEN 1
                 ELSE 0
             END
         ) AS peak_hour_orders,
@@ -1250,10 +1247,11 @@ WITH customer_stats AS (
     FROM restaurant_orders
     GROUP BY customer_id
 )
+
 SELECT
     customer_id,
     total_orders,
-    ROUND(peak_hour_orders * 100.0 / total_orders, 2) AS peak_hour_percentage,
+    ROUND(peak_hour_orders * 100.0 / total_orders, 0) AS peak_hour_percentage,
     ROUND(average_rating, 2) AS average_rating
 FROM customer_stats
 WHERE total_orders >= 3
