@@ -1279,3 +1279,43 @@ FROM Sales s
 JOIN first_sale_year f
     ON s.product_id = f.product_id
    AND s.year = f.first_year;
+__________________________________________________________________________________________________________
+### 3808. Find Emotionally Consistent Users
+WITH reaction_counts AS (
+    SELECT
+        user_id,
+        reaction,
+        COUNT(*) AS reaction_count
+    FROM reactions
+    GROUP BY user_id, reaction
+),
+user_totals AS (
+    SELECT
+        user_id,
+        COUNT(*) AS total_reactions
+    FROM reactions
+    GROUP BY user_id
+    HAVING COUNT(DISTINCT content_id) >= 5
+),
+ranked_reactions AS (
+    SELECT
+        rc.user_id,
+        rc.reaction,
+        rc.reaction_count,
+        ut.total_reactions,
+        ROW_NUMBER() OVER (
+            PARTITION BY rc.user_id
+            ORDER BY rc.reaction_count DESC, rc.reaction ASC
+        ) AS rn
+    FROM reaction_counts rc
+    JOIN user_totals ut
+        ON rc.user_id = ut.user_id
+)
+SELECT
+    user_id,
+    reaction AS dominant_reaction,
+    ROUND(1.0 * reaction_count / total_reactions, 2) AS reaction_ratio
+FROM ranked_reactions
+WHERE rn = 1
+  AND 1.0 * reaction_count / total_reactions >= 0.60
+ORDER BY reaction_ratio DESC, user_id ASC;
