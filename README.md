@@ -1319,3 +1319,13 @@ FROM ranked_reactions
 WHERE rn = 1
   AND 1.0 * reaction_count / total_reactions >= 0.60
 ORDER BY reaction_ratio DESC, user_id ASC;
+___________________________________________________________________________________________________
+### 3657. Find Loyal Customers
+SELECT
+    customer_id
+FROM customer_transactions
+GROUP BY customer_id
+HAVING SUM(CASE WHEN transaction_type = 'purchase' THEN 1 ELSE 0 END) >= 3
+   AND DATEDIFF(DAY, MIN(transaction_date), MAX(transaction_date)) >= 30
+   AND 1.0 * SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END) / COUNT(*) < 0.20
+ORDER BY customer_id ASC;
