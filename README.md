@@ -1329,3 +1329,38 @@ HAVING SUM(CASE WHEN transaction_type = 'purchase' THEN 1 ELSE 0 END) >= 3
    AND DATEDIFF(DAY, MIN(transaction_date), MAX(transaction_date)) >= 30
    AND 1.0 * SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END) / COUNT(*) < 0.20
 ORDER BY customer_id ASC;
+___________________________________________________________________________________________________
+### 3764. Most Common Course Pairs
+WITH top_performers AS (
+    SELECT
+        user_id
+    FROM course_completions
+    GROUP BY user_id
+    HAVING COUNT(*) >= 5
+       AND AVG(course_rating * 1.0) >= 4
+),
+course_sequence AS (
+    SELECT
+        c.user_id,
+        c.course_name AS first_course,
+        LEAD(c.course_name) OVER (
+            PARTITION BY c.user_id
+            ORDER BY c.completion_date, c.course_id
+        ) AS second_course
+    FROM course_completions c
+    INNER JOIN top_performers t
+        ON c.user_id = t.user_id
+)
+SELECT
+    first_course,
+    second_course,
+    COUNT(*) AS transition_count
+FROM course_sequence
+WHERE second_course IS NOT NULL
+GROUP BY
+    first_course,
+    second_course
+ORDER BY
+    transition_count DESC,
+    first_course ASC,
+    second_course ASC;
