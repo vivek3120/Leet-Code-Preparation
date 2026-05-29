@@ -1364,3 +1364,159 @@ ORDER BY
     transition_count DESC,
     first_course ASC,
     second_course ASC;
+______________________________________________________________________________________
+### 3617. Find Students with Study Spiral Pattern
+WITH ordered_sessions AS (
+    SELECT
+        ss.*,
+        LAG(session_date) OVER (
+            PARTITION BY student_id
+            ORDER BY session_date, session_id
+        ) AS prev_session_date
+    FROM study_sessions ss
+),
+
+session_groups AS (
+    SELECT
+        *,
+        SUM(
+            CASE
+                WHEN prev_session_date IS NULL THEN 1
+                WHEN DATEDIFF(DAY, prev_session_date, session_date) > 2 THEN 1
+                ELSE 0
+            END
+        ) OVER (
+            PARTITION BY student_id
+            ORDER BY session_date, session_id
+            ROWS UNBOUNDED PRECEDING
+        ) AS group_id
+    FROM ordered_sessions
+),
+
+numbered_sessions AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY student_id, group_id
+            ORDER BY session_date, session_id
+        ) AS rn,
+        COUNT(*) OVER (
+            PARTITION BY student_id, group_id
+        ) AS group_session_count,
+        SUM(hours_studied) OVER (
+            PARTITION BY student_id, group_id
+        ) AS total_study_hours
+    FROM session_groups
+),
+
+max_len AS (
+    SELECT MAX(group_session_count) / 2 AS max_cycle_length
+    FROM numbered_sessions
+),
+
+nums AS (
+    SELECT 3 AS cycle_length
+    UNION ALL
+    SELECT cycle_length + 1
+    FROM nums
+    WHERE cycle_length + 1 <= (
+        SELECT max_cycle_length FROM max_len
+    )
+),
+
+possible_cycles AS (
+    SELECT DISTINCT
+        ns.student_id,
+        ns.group_id,
+        n.cycle_length,
+        ns.group_session_count,
+        ns.total_study_hours
+    FROM numbered_sessions ns
+    JOIN nums n
+        ON ns.group_session_count >= n.cycle_length * 2
+),
+
+cycle_check AS (
+    SELECT
+        pc.student_id,
+        pc.group_id,
+        pc.cycle_length,
+        pc.total_study_hours,
+        SUM(
+            CASE
+                WHEN cur.subject = prev.subject THEN 0
+                ELSE 1
+            END
+        ) AS mismatch_count
+    FROM possible_cycles pc
+    JOIN numbered_sessions cur
+        ON cur.student_id = pc.student_id
+        AND cur.group_id = pc.group_id
+        AND cur.rn > pc.cycle_length
+    JOIN numbered_sessions prev
+        ON prev.student_id = cur.student_id
+        AND prev.group_id = cur.group_id
+        AND prev.rn = cur.rn - pc.cycle_length
+    GROUP BY
+        pc.student_id,
+        pc.group_id,
+        pc.cycle_length,
+        pc.total_study_hours
+),
+
+distinct_subject_check AS (
+    SELECT
+        pc.student_id,
+        pc.group_id,
+        pc.cycle_length,
+        COUNT(DISTINCT ns.subject) AS distinct_subjects
+    FROM possible_cycles pc
+    JOIN numbered_sessions ns
+        ON ns.student_id = pc.student_id
+        AND ns.group_id = pc.group_id
+        AND ns.rn <= pc.cycle_length
+    GROUP BY
+        pc.student_id,
+        pc.group_id,
+        pc.cycle_length
+),
+
+valid_cycles AS (
+    SELECT
+        cc.student_id,
+        cc.group_id,
+        cc.cycle_length,
+        cc.total_study_hours
+    FROM cycle_check cc
+    JOIN distinct_subject_check dsc
+        ON cc.student_id = dsc.student_id
+        AND cc.group_id = dsc.group_id
+        AND cc.cycle_length = dsc.cycle_length
+    WHERE cc.mismatch_count = 0
+      AND dsc.distinct_subjects = cc.cycle_length
+),
+
+ranked_cycles AS (
+    SELECT
+        *,
+        ROW_NUMBER() OVER (
+            PARTITION BY student_id
+            ORDER BY cycle_length DESC, total_study_hours DESC
+        ) AS rn
+    FROM valid_cycles
+)
+
+SELECT
+    s.student_id,
+    s.student_name,
+    s.major,
+    rc.cycle_length,
+    rc.total_study_hours
+FROM ranked_cycles rc
+JOIN students s
+    ON s.student_id = rc.student_id
+WHERE rc.rn = 1
+ORDER BY
+    rc.cycle_length DESC,
+    rc.total_study_hours DESC
+OPTION (MAXRECURSION 0);
