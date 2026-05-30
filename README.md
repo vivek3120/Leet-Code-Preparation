@@ -1495,7 +1495,6 @@ valid_cycles AS (
     WHERE cc.mismatch_count = 0
       AND dsc.distinct_subjects = cc.cycle_length
 ),
-
 ranked_cycles AS (
     SELECT
         *,
@@ -1505,7 +1504,6 @@ ranked_cycles AS (
         ) AS rn
     FROM valid_cycles
 )
-
 SELECT
     s.student_id,
     s.student_name,
@@ -1520,3 +1518,24 @@ ORDER BY
     rc.cycle_length DESC,
     rc.total_study_hours DESC
 OPTION (MAXRECURSION 0);
+_______________________________________________________________________________________
+### 262. Trips and Users
+SELECT
+    t.request_at AS Day,
+    ROUND(
+        SUM(CASE 
+                WHEN t.status IN ('cancelled_by_driver', 'cancelled_by_client') 
+                THEN 1 
+                ELSE 0 
+            END) * 1.0 / COUNT(*),
+        2
+    ) AS "Cancellation Rate"
+FROM Trips t
+JOIN Users c
+    ON t.client_id = c.users_id
+JOIN Users d
+    ON t.driver_id = d.users_id
+WHERE c.banned = 'No'
+  AND d.banned = 'No'
+  AND t.request_at BETWEEN '2013-10-01' AND '2013-10-03'
+GROUP BY t.request_at;
