@@ -1546,3 +1546,8 @@ ________________________________________________________________________________
 import pandas as pd
 def createDataframe(student_data: List[List[int]]) -> pd.DataFrame:
     return pd.DataFrame(student_data, columns=["student_id", "age"])
+_________________________________________________________________________________________________
+### 2878. Get the Size of a DataFrame
+import pandas as pd
+def getDataframeSize(players: pd.DataFrame) -> list[int]:
+    return [players.shape[0], players.shape[1]]
