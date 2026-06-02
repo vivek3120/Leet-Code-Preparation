@@ -1551,3 +1551,8 @@ ________________________________________________________________________________
 import pandas as pd
 def getDataframeSize(players: pd.DataFrame) -> list[int]:
     return [players.shape[0], players.shape[1]]
+_________________________________________________________________________________________________
+### 2879. Display the First Three Rows
+import pandas as pd
+def selectFirstRows(employees: pd.DataFrame) -> pd.DataFrame:
+    return employees.head(3)
