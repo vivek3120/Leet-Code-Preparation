@@ -1561,3 +1561,9 @@ ________________________________________________________________________________
 import pandas as pd
 def selectData(students: pd.DataFrame) -> pd.DataFrame:
     return students.loc[students["student_id"] == 101, ["name", "age"]]
+________________________________________________________________________________________________
+### 2881. Create a New Column
+import pandas as pd
+def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees["bonus"] = employees["salary"] * 2
+    return employees
