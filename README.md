@@ -1567,3 +1567,9 @@ import pandas as pd
 def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
     employees["bonus"] = employees["salary"] * 2
     return employees
+__________________________________________________________________________________________________
+### 2884. Modify Columns
+import pandas as pd
+def modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:
+    employees["salary"] = employees["salary"] * 2
+    return employees
