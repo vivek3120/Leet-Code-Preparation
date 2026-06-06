@@ -1573,3 +1573,8 @@ import pandas as pd
 def modifySalaryColumn(employees: pd.DataFrame) -> pd.DataFrame:
     employees["salary"] = employees["salary"] * 2
     return employees
+_________________________________________________________________________________________________
+### 2882. Drop Duplicate Rows
+import pandas as pd
+def dropDuplicateEmails(customers: pd.DataFrame) -> pd.DataFrame:
+    return customers.drop_duplicates(subset='email', keep='first')
