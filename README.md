@@ -1588,3 +1588,8 @@ def renameColumns(students: pd.DataFrame) -> pd.DataFrame:
         "last":"last_name",
         "age":"age_in_years",
     })
+________________________________________________________________________________________________
+### 2883. Drop Missing Data
+import pandas as pd
+def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
+    return students.dropna(subset=['name'])
