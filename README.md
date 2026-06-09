@@ -1593,3 +1593,9 @@ ________________________________________________________________________________
 import pandas as pd
 def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
     return students.dropna(subset=['name'])
+______________________________________________________________________________________________
+### 2886. Change Data Type
+import pandas as pd
+def changeDatatype(students: pd.DataFrame) -> pd.DataFrame:
+    students['grade'] = students['grade'].astype(int)
+    return students
