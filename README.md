@@ -3,11 +3,9 @@
 ### Combine 2 tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
 __________________________________________________________________________________________________
-
 ### 181. Employees Earning More Than Their Managers
 select e.name as Employee from Employee e join Employee m on e.managerid=m.id where m.salary<e.salary ;
 __________________________________________________________________________________________________
-
 ### 1204. Last Person to Fit in the Bus
 SELECT top 1 person_name
 FROM ( SELECT  person_name, SUM(weight) OVER (ORDER BY turn) AS running_weight
@@ -19,9 +17,7 @@ ________________________________________________________________________________
 ### 1045. Customers Who Bought All Products
 SELECT customer_id FROM Customer GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key) =  (SELECT COUNT(*) FROM Product);
-
 ___________________________________________________________________________________________________
-
 ### 1251. Average Selling Price
 SELECT 
     p.product_id,
@@ -38,13 +34,10 @@ LEFT JOIN UnitsSold u
 GROUP BY p.product_id;
 
 _____________________________________________________________________________________________________
-
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
-
 _____________________________________________________________________________________________________
-
 ### 3793. Find Users with High Token Usage
 SELECT 
     p.user_id,
