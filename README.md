@@ -1602,3 +1602,7 @@ import pandas as pd
 def concatenateTables(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
     return pd.concat([df1, df2], ignore_index=True)
 ______________________________________________________________________________________________
+### 2891. Method Chaining
+import pandas as pd
+def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
+    return animals[animals['weight'] > 100].sort_values(by='weight', ascending=False)[['name']]
