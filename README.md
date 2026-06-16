@@ -1606,3 +1606,12 @@ ________________________________________________________________________________
 import pandas as pd
 def findHeavyAnimals(animals: pd.DataFrame) -> pd.DataFrame:
     return animals[animals['weight'] > 100].sort_values(by='weight', ascending=False)[['name']]
+___________________________________________________________________________________________________
+### 2890. Reshape Data: Melt
+import pandas as pd
+def meltTable(report: pd.DataFrame) -> pd.DataFrame:
+    return report.melt(
+        id_vars='product',
+        var_name='quarter',
+        value_name='sales'
+    )
