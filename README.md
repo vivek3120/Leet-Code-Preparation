@@ -90,7 +90,6 @@ GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC;
 _________________________________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
-
 select sample_id , dna_sequence , species , 
 CASE 
         WHEN dna_sequence LIKE 'ATG%' THEN 1 
@@ -126,7 +125,7 @@ select salary, dense_rank() over (order by salary desc) as dns from Employee
         where dns=@N
     );
 END
-____________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 1873. Calculate Special Bonus
 SELECT 
     employee_id,
@@ -160,8 +159,7 @@ ________________________________________________________________________________
 SELECT top 1 customer_number
 FROM Orders
 GROUP BY customer_number
-ORDER BY COUNT(*) DESC
-;
+ORDER BY COUNT(*) DESC;
 _____________________________________________________________________________________________________________
 ### 607. Sales Person
 SELECT s.name
