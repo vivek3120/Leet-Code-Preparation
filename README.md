@@ -710,7 +710,6 @@ WHERE rn = 1
 ORDER BY streak_length DESC, user_id ASC;
 __________________________________________________________________________________________________
 ### 3374. First Letter Capitalization II
-
 __________________________________________________________________________________________________
 ### 3451. Find Invalid IP Addresses
 SELECT
@@ -786,9 +785,7 @@ WITH hierarchy AS (
         1 AS level
     FROM Employees
     WHERE manager_id IS NULL
-
     UNION ALL
-
     SELECT
         e.employee_id,
         e.employee_name,
