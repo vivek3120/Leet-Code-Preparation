@@ -803,9 +803,7 @@ subordinates AS (
         employee_id AS employee_id,
         salary
     FROM Employees
-
     UNION ALL
-
     SELECT
         s.manager_id,
         e.employee_id,
@@ -814,7 +812,6 @@ subordinates AS (
     INNER JOIN Employees e
         ON e.manager_id = s.employee_id
 )
-
 SELECT
     h.employee_id,
     h.employee_name,
