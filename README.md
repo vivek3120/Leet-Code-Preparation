@@ -1147,7 +1147,6 @@ driver_half_avg AS (
     FROM trip_efficiency
     GROUP BY driver_id
 )
-
 SELECT
     d.driver_id,
     d.driver_name,
@@ -1209,7 +1208,6 @@ WITH customer_stats AS (
     SELECT
         customer_id,
         COUNT(*) AS total_orders,
-
         SUM(
             CASE
                 WHEN CAST(order_timestamp AS TIME) BETWEEN '11:00:00' AND '14:00:00'
@@ -1218,7 +1216,6 @@ WITH customer_stats AS (
                 ELSE 0
             END
         ) AS peak_hour_orders,
-
         SUM(
             CASE
                 WHEN order_rating IS NOT NULL THEN 1
@@ -1230,7 +1227,6 @@ WITH customer_stats AS (
     FROM restaurant_orders
     GROUP BY customer_id
 )
-
 SELECT
     customer_id,
     total_orders,
