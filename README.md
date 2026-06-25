@@ -72,8 +72,7 @@ JOIN Activity b
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
 _______________________________________________________________________________________________________
-### 1667. Fix Names in a Table
-
+### 1667 Fix Names in a Table
 select user_id, 
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
 from users
