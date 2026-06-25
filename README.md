@@ -1414,7 +1414,6 @@ possible_cycles AS (
     JOIN nums n
         ON ns.group_session_count >= n.cycle_length * 2
 ),
-
 cycle_check AS (
     SELECT
         pc.student_id,
@@ -1459,7 +1458,6 @@ distinct_subject_check AS (
         pc.group_id,
         pc.cycle_length
 ),
-
 valid_cycles AS (
     SELECT
         cc.student_id,
