@@ -883,9 +883,7 @@ FROM
     GROUP BY u.user_id, u.name
     ORDER BY COUNT(*) DESC, u.name ASC
 ) A
-
 UNION ALL
-
 SELECT results
 FROM
 (
@@ -909,7 +907,6 @@ WITH ranked_inventory AS (
         i.quantity,
         i.price,
         COUNT(*) OVER (PARTITION BY i.store_id) AS product_count,
-
         ROW_NUMBER() OVER (
             PARTITION BY i.store_id
             ORDER BY i.price DESC, i.product_name
@@ -979,11 +976,9 @@ WITH user_events AS (
         MAX(event_date) OVER (
             PARTITION BY user_id
         ) AS last_event_date,
-
         MAX(monthly_amount) OVER (
             PARTITION BY user_id
         ) AS max_historical_amount,
-
         SUM(CASE WHEN event_type = 'downgrade' THEN 1 ELSE 0 END) OVER (
             PARTITION BY user_id
         ) AS downgrade_count
