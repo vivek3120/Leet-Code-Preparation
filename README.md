@@ -795,7 +795,6 @@ WITH hierarchy AS (
     INNER JOIN hierarchy h
         ON e.manager_id = h.employee_id
 ),
-
 subordinates AS (
     SELECT
         employee_id AS manager_id,
@@ -911,7 +910,6 @@ WITH ranked_inventory AS (
             PARTITION BY i.store_id
             ORDER BY i.price DESC, i.product_name
         ) AS expensive_rank,
-
         ROW_NUMBER() OVER (
             PARTITION BY i.store_id
             ORDER BY i.price ASC, i.product_name
