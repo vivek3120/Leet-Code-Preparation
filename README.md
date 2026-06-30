@@ -1214,7 +1214,6 @@ WITH customer_stats AS (
                 ELSE 0
             END
         ) AS rated_orders,
-
         AVG(CAST(order_rating AS DECIMAL(10, 2))) AS average_rating
     FROM restaurant_orders
     GROUP BY customer_id
@@ -1320,8 +1319,7 @@ course_sequence AS (
         ) AS second_course
     FROM course_completions c
     INNER JOIN top_performers t
-        ON c.user_id = t.user_id
-)
+        ON c.user_id = t.user_id)
 SELECT
     first_course,
     second_course,
