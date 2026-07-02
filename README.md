@@ -77,7 +77,7 @@ select user_id,
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
 from users
 order by user_id
-________________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 1633. Percentage of Users Attended a Contest
 
 SELECT 
@@ -87,7 +87,7 @@ SELECT
 FROM Register r
 GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC;
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
