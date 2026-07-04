@@ -51,14 +51,14 @@ HAVING
 ORDER BY 
     avg_tokens DESC,
     user_id ASC;
-____________________________________________________________________________________________________
+__________________________________________________________________________________________________
 
 ### 511. Game Play Analysis I
 select player_id, first_login  from(select player_id, event_date as first_login,
 row_number() over (partition by player_id  order by event_date asc) as row_num
  from activity ) a
  where row_num=1
- ___________________________________________________________________________________________________
+ _________________________________________________________________________________________________
 
  ### 1661. Average Time of Process per Machine
 
@@ -71,7 +71,7 @@ JOIN Activity b
    AND a.activity_type = 'start'
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
-_______________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 1667 Fix Names in a Table
 select user_id, 
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
@@ -87,7 +87,7 @@ SELECT
 FROM Register r
 GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC;
-_______________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
