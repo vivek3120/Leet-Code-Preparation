@@ -1231,7 +1231,7 @@ WHERE total_orders >= 3
 ORDER BY
     average_rating DESC,
     customer_id DESC;
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 1070. Product Sales Analysis III
 WITH first_sale_year AS (
     SELECT
@@ -1289,7 +1289,7 @@ FROM ranked_reactions
 WHERE rn = 1
   AND 1.0 * reaction_count / total_reactions >= 0.60
 ORDER BY reaction_ratio DESC, user_id ASC;
-___________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 3657. Find Loyal Customers
 SELECT
     customer_id
@@ -1299,7 +1299,7 @@ HAVING SUM(CASE WHEN transaction_type = 'purchase' THEN 1 ELSE 0 END) >= 3
    AND DATEDIFF(DAY, MIN(transaction_date), MAX(transaction_date)) >= 30
    AND 1.0 * SUM(CASE WHEN transaction_type = 'refund' THEN 1 ELSE 0 END) / COUNT(*) < 0.20
 ORDER BY customer_id ASC;
-___________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 3764. Most Common Course Pairs
 WITH top_performers AS (
     SELECT
