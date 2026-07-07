@@ -17,7 +17,7 @@ ________________________________________________________________________________
 ### 1045. Customers Who Bought All Products
 SELECT customer_id FROM Customer GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key) =  (SELECT COUNT(*) FROM Product);
-___________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 1251. Average Selling Price
 SELECT 
     p.product_id,
@@ -111,7 +111,7 @@ CASE
     END AS has_ggg
 FROM Samples
 ORDER BY sample_id;
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
@@ -124,7 +124,7 @@ select salary, dense_rank() over (order by salary desc) as dns from Employee
         where dns=@N
     );
 END
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 1873. Calculate Special Bonus
 SELECT 
     employee_id,
