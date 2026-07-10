@@ -1611,3 +1611,23 @@ class Foo:
     def third(self, printThird: "Callable[[], None]") -> None:   
         self.second_done.wait()
         printThird()
+_____________________________________________________________________________________________________
+### 20. Valid Parentheses
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = []
+        matching = {
+            ')': '(',
+            ']': '[',
+            '}': '{'
+        }
+        for bracket in s:
+            if bracket in "([{":
+                stack.append(bracket)
+            else:
+                # No opening bracket or wrong bracket type
+                if not stack or stack[-1] != matching[bracket]:
+                    return False
+                stack.pop()
+        return len(stack) == 0
+        
