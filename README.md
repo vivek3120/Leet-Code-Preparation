@@ -37,7 +37,7 @@ ________________________________________________________________________________
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
-_____________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 3793. Find Users with High Token Usage
 SELECT 
     p.user_id,
@@ -58,7 +58,7 @@ select player_id, first_login  from(select player_id, event_date as first_login,
 row_number() over (partition by player_id  order by event_date asc) as row_num
  from activity ) a
  where row_num=1
- _________________________________________________________________________________________________
+ _______________________________________________________________________________________________
 
  ### 1661. Average Time of Process per Machine
 
