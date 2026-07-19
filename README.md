@@ -51,7 +51,7 @@ HAVING
 ORDER BY 
     avg_tokens DESC,
     user_id ASC;
-__________________________________________________________________________________________________
+________________________________________________________________________________________________
 
 ### 511. Game Play Analysis I
 select player_id, first_login  from(select player_id, event_date as first_login,
