@@ -1714,3 +1714,4 @@ class Solution:
             last_seen[char] = right
             max_length = max(max_length, right - left + 1)
         return max_length        
+______________________________________________________________________________________________
