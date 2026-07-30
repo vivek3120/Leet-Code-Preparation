@@ -1759,3 +1759,13 @@ class Solution:
             else:
                 right -= 1
         return max_area   
+_________________________________________________________________________________________________
+### 26. Remove Duplicates from Sorted Array
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        write = 1
+        for read in range(1, len(nums)):
+            if nums[read] != nums[read - 1]:
+                nums[write] = nums[read]
+                write += 1
+        return write
