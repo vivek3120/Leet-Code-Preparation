@@ -278,14 +278,14 @@ SELECT
     'High Salary',
     SUM(CASE WHEN income > 50000 THEN 1 ELSE 0 END)
 FROM Accounts;
-______________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 1158. Market Analysis I
 select u.user_id as buyer_id,u.join_date, count(o.order_id) as orders_in_2019 from 
 users u left join orders o on u.user_id = o.buyer_id 
  and o.order_date >= '2019-01-01'
    AND o.order_date < '2020-01-01'
 GROUP BY u.user_id, u.join_date;
-_______________________________________________________________________________________________________________
+___________________________________________________________________________________________________________
 ### 184. Department Highest Salary
 SELECT
     d.name AS Department,
@@ -301,7 +301,7 @@ JOIN (
 ) m
   ON e.departmentId = m.departmentId
  AND e.salary = m.max_salary;
-_______________________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 ### 1164. Product Price at a Given Date
 WITH ranked_prices AS (
     SELECT
@@ -322,7 +322,7 @@ FROM (SELECT DISTINCT product_id FROM Products) p
 LEFT JOIN ranked_prices r
     ON p.product_id = r.product_id
    AND r.rn = 1;
-_________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 ### 1978. Employees Whose Manager Left the Company
 SELECT e.employee_id FROM Employees e
 WHERE e.salary < 30000
