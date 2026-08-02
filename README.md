@@ -1769,3 +1769,9 @@ class Solution:
                 nums[write] = nums[read]
                 write += 1
         return write
+_________________________________________________________________________________________________
+### 58. Length of Last Word
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        words = s.split()
+        return len(words[-1])
