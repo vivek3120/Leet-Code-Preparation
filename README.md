@@ -124,7 +124,7 @@ select salary, dense_rank() over (order by salary desc) as dns from Employee
         where dns=@N
     );
 END
-______________________________________________________________________________________________
+__________________________________________________________________________________________
 ### 1873. Calculate Special Bonus
 SELECT 
     employee_id,
@@ -135,7 +135,7 @@ SELECT
     END AS bonus
 FROM Employees
 ORDER BY employee_id;
-________________________________________________________________________________________________
+____________________________________________________________________________________________
 ### 196. Delete Duplicate Emails
 DELETE p1
 FROM Person p1
