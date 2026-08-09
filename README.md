@@ -17,7 +17,7 @@ ________________________________________________________________________________
 ### 1045. Customers Who Bought All Products
 SELECT customer_id FROM Customer GROUP BY customer_id
 HAVING COUNT(DISTINCT product_key) =  (SELECT COUNT(*) FROM Product);
-_________________________________________________________________________________________________
+_______________________________________________________________________________________________
 ### 1251. Average Selling Price
 SELECT 
     p.product_id,
@@ -77,7 +77,7 @@ select user_id,
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
 from users
 order by user_id
-_____________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 1633. Percentage of Users Attended a Contest
 
 SELECT 
@@ -87,7 +87,7 @@ SELECT
 FROM Register r
 GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC;
-______________________________________________________________________________________________________
+____________________________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
