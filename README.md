@@ -33,11 +33,11 @@ LEFT JOIN UnitsSold u
     AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id;
 
-___________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
-___________________________________________________________________________________________________
+_________________________________________________________________________________________________
 ### 3793. Find Users with High Token Usage
 SELECT 
     p.user_id,
