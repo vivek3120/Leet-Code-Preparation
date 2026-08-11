@@ -1823,3 +1823,8 @@ class Solution:
             else:
                 right = mid - 1
         return left
+_____________________________________________________________________________________________
+### 9. Palindrome Number
+class Solution:
+    def isPalindrome(self, x: int) -> bool:
+        return str(x) == str(x)[::-1]
