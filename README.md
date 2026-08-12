@@ -86,8 +86,8 @@ SELECT
           (SELECT COUNT(*) FROM Users), 2) AS percentage
 FROM Register r
 GROUP BY r.contest_id
-ORDER BY percentage DESC, r.contest_id ASC;
-____________________________________________________________________________________________________
+ORDER BY percentage DESC, r.contest_id ASC
+__________________________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
@@ -124,7 +124,7 @@ select salary, dense_rank() over (order by salary desc) as dns from Employee
         where dns=@N
     );
 END
-__________________________________________________________________________________________
+________________________________________________________________________________________
 ### 1873. Calculate Special Bonus
 SELECT 
     employee_id,
