@@ -233,22 +233,22 @@ LEFT JOIN Examinations e
     AND e.subject_name = su.subject_name
 group by s.student_id, s.student_name, su.subject_name
 order by student_id, subject_name
-_________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________
 ### 1527. Patients With a Condition
 select patient_id , patient_name , conditions from patients
 where conditions like '% DIAB1%'
 or conditions like 'DIAB1%'
-_________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________
 ### 2356. Number of Unique Subjects Taught by Each Teacher
 select teacher_id,count(distinct subject_id)as cnt from teacher 
 group by teacher_id
-_________________________________________________________________________________________________________________
+_______________________________________________________________________________________________________________
 ### 1327. List the Products Ordered in a Period
 select p.product_name, SUM(o.unit) AS unit from products p
 join orders o on o.product_id=p.product_id
 where order_date>'2020-01-31' and order_date<'2020-03-01'
 group by product_name having SUM(o.unit)>=100
-________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
 ### 1693. Daily Leads and Partners
 select date_id, make_name,count(distinct lead_id)  as unique_leads,count(distinct partner_id)   as unique_partners from dailysales group by date_id,make_name
 _______________________________________________________________________________________________________________
