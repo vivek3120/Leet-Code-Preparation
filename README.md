@@ -71,13 +71,13 @@ JOIN Activity b
    AND a.activity_type = 'start'
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
-_____________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 1667 Fix Names in a Table
 select user_id, 
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
 from users
 order by user_id
-___________________________________________________________________________________________________
+_________________________________________________________________________________________________
 ### 1633. Percentage of Users Attended a Contest
 
 SELECT 
@@ -111,7 +111,7 @@ CASE
     END AS has_ggg
 FROM Samples
 ORDER BY sample_id;
-_______________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
