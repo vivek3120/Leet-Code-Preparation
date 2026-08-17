@@ -251,10 +251,10 @@ group by product_name having SUM(o.unit)>=100
 ______________________________________________________________________________________________________________
 ### 1693. Daily Leads and Partners
 select date_id, make_name,count(distinct lead_id)  as unique_leads,count(distinct partner_id)   as unique_partners from dailysales group by date_id,make_name
-_______________________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 178. Rank Scores
 select score, dense_rank() over(order by score desc) as rank from Scores
-________________________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 1393. Capital Gain/Loss
 select stock_name,
 sum(case when operation='Sell' then price
@@ -262,7 +262,7 @@ when operation='Buy' then -price
 end)
 as capital_gain_loss from stocks
 group by stock_name
-________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 ### 1907. Count Salary Categories
 SELECT 
     'Low Salary' AS category,
