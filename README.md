@@ -37,7 +37,7 @@ ________________________________________________________________________________
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
-_________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 3793. Find Users with High Token Usage
 SELECT 
     p.user_id,
@@ -111,7 +111,7 @@ CASE
     END AS has_ggg
 FROM Samples
 ORDER BY sample_id;
-______________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
@@ -150,16 +150,16 @@ lead(num,2) over (order by id asc) as lnum2
  from logs
 ) k where consecutivenums =lnum1
 and consecutivenums =lnum2
-___________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 584. Find Customer Referee
 select name from Customer where referee_id !=2 or referee_id is null
-___________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 586. Customer Placing the Largest Number of Orders
 SELECT top 1 customer_number
 FROM Orders
 GROUP BY customer_number
 ORDER BY COUNT(*) DESC;
-___________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 607. Sales Person
 SELECT s.name
 FROM SalesPerson s
