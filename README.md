@@ -142,7 +142,7 @@ FROM Person p1
 JOIN Person p2
   ON p1.email = p2.email
  AND p1.id > p2.id;
- _______________________________________________________________________________________________________
+ ___________________________________________________________________________________________________
 ### 180. Consecutive Numbers
 select distinct consecutivenums from(select num as consecutivenums,
 lead(num,1) over (order by id asc) as lnum1,
@@ -170,15 +170,15 @@ WHERE NOT EXISTS (
     WHERE o.sales_id = s.sales_id
       AND c.name = 'RED'
 );
-____________________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 ### 595. Big Countries
 select name, population, area from World where
 area>= 3000000
 or population>= 25000000
-____________________________________________________________________________________________________________
+__________________________________________________________________________________________________________
 ### 175. Combine Two Tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
-____________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 596. Classes With at Least 5 Students
 select class from courses
 group by class
