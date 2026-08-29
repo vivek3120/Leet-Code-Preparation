@@ -484,7 +484,7 @@ SELECT season,category,total_quantity,total_revenue
 FROM ranked
 WHERE rn = 1
 ORDER BY season;
-_______________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 3521. Find Product Recommendation Pairs
 SELECT
 p1.product_id AS product1_id,
@@ -556,7 +556,7 @@ SELECT
 FROM moving_amount
 WHERE day_count = 7
 ORDER BY visited_on;
-__________________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 3580. Find Consistently Improving Employees
 WITH ranked_reviews AS (
 SELECT
@@ -630,7 +630,7 @@ FROM category_pairs
 GROUP BY category1, category2
 HAVING COUNT(DISTINCT user_id) >= 3
 ORDER BY customer_count DESC, category1 ASC, category2 ASC;
-______________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 185. Department Top Three Salaries
 WITH ranked_salary AS (
 SELECT
