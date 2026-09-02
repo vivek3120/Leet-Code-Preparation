@@ -150,10 +150,10 @@ lead(num,2) over (order by id asc) as lnum2
  from logs
 ) k where consecutivenums =lnum1
 and consecutivenums =lnum2
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 584. Find Customer Referee
 select name from Customer where referee_id !=2 or referee_id is null
-_________________________________________________________________________________________________________
+_______________________________________________________________________________________________________
 ### 586. Customer Placing the Largest Number of Orders
 SELECT top 1 customer_number
 FROM Orders
@@ -406,7 +406,7 @@ HAVING
 SUM(CASE WHEN activity_type = 'free_trial' THEN 1 ELSE 0 END) > 0
 AND SUM(CASE WHEN activity_type = 'paid' THEN 1 ELSE 0 END) > 0
 order by user_id
-___________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 ### 608. Tree Node
 select id,
 case when p_id is null then 'Root'
@@ -414,7 +414,7 @@ when id in (select distinct p_id from tree) then 'Inner'
 else 'Leaf'
  end as type 
  from tree
-__________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 ### 602. Friend Requests II: Who Has the Most Friends
 SELECT top 1 id, COUNT(*) AS num
 FROM
@@ -423,7 +423,7 @@ FROM
 ) t
 GROUP BY id
 ORDER BY num DESC;
-_________________________________________________________________________________________________________________
+________________________________________________________________________________________________________________
 ### 626. Exchange Seats
 SELECT 
 CASE
@@ -446,7 +446,7 @@ GROUP BY customer_id
 ) f
 ON d.customer_id = f.customer_id
 AND d.order_date = f.first_order_date;
-_______________________________________________________________________________________________________________
+______________________________________________________________________________________________________________
 ### 3564. Seasonal Sales Analysis
 WITH category_sales AS (
 SELECT CASE
@@ -652,7 +652,7 @@ FROM ranked_salary r
 JOIN Department d
 ON r.departmentId = d.id
 WHERE r.salary_rank <= 3;
-_________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 3832. Find Users with Persistent Behavior Patterns
 WITH one_action_days AS (
     SELECT
