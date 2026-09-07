@@ -365,12 +365,12 @@ WHERE
     OR p.description COLLATE Latin1_General_CS_AS LIKE '%[^A-Za-z0-9]SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
     OR p.description COLLATE Latin1_General_CS_AS LIKE 'SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
 ORDER BY p.product_id;
-_______________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 ### 176. Second Highest Salary
 select max(salary) as secondhighestsalary 
 from   employee 
 where salary<(select max(salary) from employee)
-_____________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 ### 619. Biggest Single Number
 SELECT MAX(num) AS num
 FROM mynumbers
@@ -380,7 +380,7 @@ WHERE num IN (
     GROUP BY num
     HAVING COUNT(*) = 1
 );
-_____________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 ### 3220. Odd and Even Transactions
 select transaction_date,
     SUM(CASE WHEN amount % 2 = 1 THEN amount ELSE 0 END) AS odd_sum,
@@ -388,7 +388,7 @@ select transaction_date,
  from transactions 
  group by transaction_date
  order by transaction_date asc
-_____________________________________________________________________________________________________________________
+__________________________________________________________________________________________________________________
 ### 1193. Monthly Transactions I
 select  FORMAT(trans_date, 'yyyy-MM') AS month,country,count(*) as trans_count,
 sum(case when state = 'approved' THEN 1 ELSE 0 END) AS approved_count,
@@ -396,7 +396,7 @@ sum(amount) as trans_total_amount,
 SUM(CASE WHEN state = 'approved' THEN amount ELSE 0 END) AS approved_total_amount
 from transactions
 GROUP BY FORMAT(trans_date, 'yyyy-MM'), country;
-____________________________________________________________________________________________________________________
+_________________________________________________________________________________________________________________
 ### 3497. Analyze Subscription Conversion 
 select user_id,
 round(avg(case when activity_type='free_trial' then activity_duration*1.0 end),2)  as trial_avg_duration, 
