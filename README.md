@@ -602,7 +602,7 @@ WHERE p.review_count = 3
 AND p.first_rating < p.second_rating
 AND p.second_rating < p.third_rating
 ORDER BY improvement_score DESC, e.name ASC;
-________________________________________________________________________________________________
+________________________________________________________________________________________
 ### 3554. Find Category Recommendation Pairs
 WITH user_categories AS (
 SELECT DISTINCT
@@ -707,9 +707,9 @@ SELECT
 FROM ranked
 WHERE rn = 1
 ORDER BY streak_length DESC, user_id ASC;
-________________________________________________________________________________________________
+______________________________________________________________________________________________
 ### 3374. First Letter Capitalization II
-________________________________________________________________________________________________
+____________________________________________________________________________________________
 ### 3451. Find Invalid IP Addresses
 SELECT
 ip,
