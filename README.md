@@ -278,14 +278,14 @@ SELECT
     'High Salary',
     SUM(CASE WHEN income > 50000 THEN 1 ELSE 0 END)
 FROM Accounts;
-_________________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 1158. Market Analysis I
 select u.user_id as buyer_id,u.join_date, count(o.order_id) as orders_in_2019 from 
 users u left join orders o on u.user_id = o.buyer_id 
  and o.order_date >= '2019-01-01'
    AND o.order_date < '2020-01-01'
 GROUP BY u.user_id, u.join_date;
-___________________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 184. Department Highest Salary
 SELECT
     d.name AS Department,
@@ -301,7 +301,7 @@ JOIN (
 ) m
   ON e.departmentId = m.departmentId
  AND e.salary = m.max_salary;
-__________________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 1164. Product Price at a Given Date
 WITH ranked_prices AS (
     SELECT
