@@ -1945,3 +1945,23 @@ class Solution:
 
         return -1
 ________________________________________________________________________________________________
+### 39. Combination Sum
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        result = []
+        def backtrack(start, remaining, current):
+            if remaining == 0:
+                result.append(current.copy())
+                return
+            if remaining < 0:
+                return
+            for i in range(start, len(candidates)):
+                current.append(candidates[i])
+                backtrack(
+                    i,                          # same i → can reuse this number
+                    remaining - candidates[i],
+                    current
+                )
+                current.pop()
+        backtrack(0, target, [])
+        return result
