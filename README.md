@@ -87,7 +87,7 @@ SELECT
 FROM Register r
 GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC
-__________________________________________________________________________________________________
+______________________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
@@ -111,7 +111,7 @@ CASE
     END AS has_ggg
 FROM Samples
 ORDER BY sample_id;
-___________________________________________________________________________________________________
+______________________________________________________________________________________________
 ### 177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
@@ -135,7 +135,7 @@ SELECT
     END AS bonus
 FROM Employees
 ORDER BY employee_id;
-____________________________________________________________________________________________
+________________________________________________________________________________________
 ### 196. Delete Duplicate Emails
 DELETE p1
 FROM Person p1
