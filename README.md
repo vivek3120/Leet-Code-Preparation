@@ -1231,7 +1231,7 @@ WHERE total_orders >= 3
 ORDER BY
     average_rating DESC,
     customer_id DESC;
-_______________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 1070. Product Sales Analysis III
 WITH first_sale_year AS (
     SELECT
@@ -1249,7 +1249,7 @@ FROM Sales s
 JOIN first_sale_year f
     ON s.product_id = f.product_id
    AND s.year = f.first_year;
-__________________________________________________________________________________________________________
+____________________________________________________________________________________________________
 ### 3808. Find Emotionally Consistent Users
 WITH reaction_counts AS (
     SELECT
@@ -1485,7 +1485,7 @@ ORDER BY
     rc.cycle_length DESC,
     rc.total_study_hours DESC
 OPTION (MAXRECURSION 0);
-_______________________________________________________________________________________
+________________________________________________________________________________
 ### 262. Trips and Users
 SELECT
     t.request_at AS Day,
