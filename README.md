@@ -262,7 +262,7 @@ when operation='Buy' then -price
 end)
 as capital_gain_loss from stocks
 group by stock_name
-__________________________________________________________________________________________________________
+______________________________________________________________________________________________________
 ### 1907. Count Salary Categories
 SELECT 
     'Low Salary' AS category,
