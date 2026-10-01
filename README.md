@@ -33,11 +33,11 @@ LEFT JOIN UnitsSold u
     AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id;
 
-______________________________________________________________________________________________
+__________________________________________________________________________________________
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
-_____________________________________________________________________________________________
+__________________________________________________________________________________________
 ### 3793. Find Users with High Token Usage
 SELECT 
     p.user_id,
@@ -51,14 +51,14 @@ HAVING
 ORDER BY 
     avg_tokens DESC,
     user_id ASC;
-__________________________________________________________________________________________
+_________________________________________________________________________________________
 
 ### 511. Game Play Analysis I
 select player_id, first_login  from(select player_id, event_date as first_login,
 row_number() over (partition by player_id  order by event_date asc) as row_num
  from activity ) a
  where row_num=1
- ____________________________________________________________________________________________
+ ________________________________________________________________________________________
 
  ### 1661. Average Time of Process per Machine
 
