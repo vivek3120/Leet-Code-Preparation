@@ -33,11 +33,11 @@ LEFT JOIN UnitsSold u
     AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id;
 
-__________________________________________________________________________________________
+________________________________________________________________________________________
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
-__________________________________________________________________________________________
+________________________________________________________________________________________
 ### 3793. Find Users with High Token Usage
 SELECT 
     p.user_id,
@@ -71,7 +71,7 @@ JOIN Activity b
    AND a.activity_type = 'start'
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
-____________________________________________________________________________________________
+_________________________________________________________________________________________
 ### 1667 Fix Names in a Table
 select user_id, 
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
