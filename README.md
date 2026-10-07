@@ -142,7 +142,7 @@ FROM Person p1
 JOIN Person p2
   ON p1.email = p2.email
  AND p1.id > p2.id;
- ___________________________________________________________________________________________________
+ _____________________________________________________________________________________________
 ### 180. Consecutive Numbers
 select distinct consecutivenums from(select num as consecutivenums,
 lead(num,1) over (order by id asc) as lnum1,
@@ -150,7 +150,7 @@ lead(num,2) over (order by id asc) as lnum2
  from logs
 ) k where consecutivenums =lnum1
 and consecutivenums =lnum2
-_____________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 584. Find Customer Referee
 select name from Customer where referee_id !=2 or referee_id is null
 _____________________________________________________________________________________________________
@@ -159,7 +159,7 @@ SELECT top 1 customer_number
 FROM Orders
 GROUP BY customer_number
 ORDER BY COUNT(*) DESC;
-_________________________________________________________________________________________________________
+_____________________________________________________________________________________________________
 ### 607. Sales Person
 SELECT s.name
 FROM SalesPerson s
