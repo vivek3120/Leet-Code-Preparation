@@ -630,7 +630,7 @@ FROM category_pairs
 GROUP BY category1, category2
 HAVING COUNT(DISTINCT user_id) >= 3
 ORDER BY customer_count DESC, category1 ASC, category2 ASC;
-___________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 185. Department Top Three Salaries
 WITH ranked_salary AS (
 SELECT
@@ -747,7 +747,7 @@ AND scroll_count >= 5
 AND CAST(click_count AS DECIMAL(10, 2)) / scroll_count < 0.20
 AND purchase_count = 0
 ORDER BY scroll_count DESC, session_id ASC;
-__________________________________________________________________________________________________
+_______________________________________________________________________________________________
 ### 601. Human Traffic of Stadium
 WITH filtered AS (
 SELECT
