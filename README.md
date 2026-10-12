@@ -828,7 +828,7 @@ ORDER BY
     budget DESC,
     h.employee_name ASC
 OPTION (MAXRECURSION 0);
-__________________________________________________________________________________________________
+_________________________________________________________________________________________
 ### 550. Game Play Analysis IV
 WITH first_login AS (
 SELECT
@@ -846,13 +846,13 @@ FROM first_login f
 LEFT JOIN Activity a
 ON f.player_id = a.player_id
 AND a.event_date = DATEADD(DAY, 1, f.first_date);
-__________________________________________________________________________________________________
+_______________________________________________________________________________________________
 ### 570. Managers with at Least 5 Direct Reports
 SELECT m.name FROM Employee e
 JOIN Employee m ON e.managerId = m.id
 GROUP BY m.id, m.name
 HAVING COUNT(e.id) >= 5;
-____________________________________________________________________________________________________
+_______________________________________________________________________________________________
 ### 585. Investments in 2016
 SELECT ROUND(SUM(tiv_2016), 2) AS tiv_2016
 FROM (
