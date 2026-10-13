@@ -1333,7 +1333,7 @@ ORDER BY
     transition_count DESC,
     first_course ASC,
     second_course ASC;
-______________________________________________________________________________________
+___________________________________________________________________________________
 ### 3617. Find Students with Study Spiral Pattern
 WITH ordered_sessions AS (
     SELECT
@@ -1485,7 +1485,7 @@ ORDER BY
     rc.cycle_length DESC,
     rc.total_study_hours DESC
 OPTION (MAXRECURSION 0);
-________________________________________________________________________________
+______________________________________________________________________________
 ### 262. Trips and Users
 SELECT
     t.request_at AS Day,
@@ -1555,7 +1555,7 @@ def renameColumns(students: pd.DataFrame) -> pd.DataFrame:
         "last":"last_name",
         "age":"age_in_years",
     })
-________________________________________________________________________________________________
+_____________________________________________________________________________________________
 ### 2883. Drop Missing Data
 import pandas as pd
 def dropMissingData(students: pd.DataFrame) -> pd.DataFrame:
