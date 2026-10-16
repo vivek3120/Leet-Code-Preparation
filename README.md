@@ -952,7 +952,7 @@ JOIN cheapest c
 WHERE c.product_count >= 3
   AND me.most_exp_quantity < c.cheapest_quantity
 ORDER BY imbalance_ratio DESC, s.store_name ASC;
-_____________________________________________________________________________________________
+______________________________________________________________________________________
 ### 3716. Find Churn Risk Customers
 WITH user_events AS (
     SELECT
@@ -1030,7 +1030,7 @@ JOIN patients p
 ORDER BY
     recovery_time ASC,
     p.patient_name ASC;
-_________________________________________________________________________________________________________________
+___________________________________________________________________________________________________
 ### 3421. Find Students Who Improved
 WITH ranked_scores AS (
     SELECT
