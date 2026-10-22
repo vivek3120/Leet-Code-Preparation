@@ -520,7 +520,7 @@ FROM Signups s
 LEFT JOIN Confirmations c
 ON s.user_id = c.user_id
 GROUP BY s.user_id;
-_________________________________________________________________________________________________
+____________________________________________________________________________________________
 ### 1321. Restaurant Growth
 WITH daily_amount AS (
     SELECT
@@ -556,7 +556,7 @@ SELECT
 FROM moving_amount
 WHERE day_count = 7
 ORDER BY visited_on;
-___________________________________________________________________________________________________
+____________________________________________________________________________________________
 ### 3580. Find Consistently Improving Employees
 WITH ranked_reviews AS (
 SELECT
@@ -602,7 +602,7 @@ WHERE p.review_count = 3
 AND p.first_rating < p.second_rating
 AND p.second_rating < p.third_rating
 ORDER BY improvement_score DESC, e.name ASC;
-________________________________________________________________________________________
+_____________________________________________________________________________________
 ### 3554. Find Category Recommendation Pairs
 WITH user_categories AS (
 SELECT DISTINCT
