@@ -897,7 +897,7 @@ FROM
     GROUP BY m.movie_id, m.title
     ORDER BY AVG(CAST(mr.rating AS FLOAT)) DESC, m.title ASC
 ) B;
-__________________________________________________________________________________________________________
+_____________________________________________________________________________________________________
 ### 3626. Find Stores with Inventory Imbalance
 WITH ranked_inventory AS (
     SELECT
@@ -1030,7 +1030,7 @@ JOIN patients p
 ORDER BY
     recovery_time ASC,
     p.patient_name ASC;
-___________________________________________________________________________________________________
+_________________________________________________________________________________________________
 ### 3421. Find Students Who Improved
 WITH ranked_scores AS (
     SELECT
