@@ -322,7 +322,7 @@ FROM (SELECT DISTINCT product_id FROM Products) p
 LEFT JOIN ranked_prices r
     ON p.product_id = r.product_id
    AND r.rn = 1;
-__________________________________________________________________________________________________
+_____________________________________________________________________________________________
 ### 1978. Employees Whose Manager Left the Company
 SELECT e.employee_id FROM Employees e
 WHERE e.salary < 30000
@@ -333,7 +333,7 @@ WHERE e.salary < 30000
       WHERE m.employee_id = e.manager_id
   )
 ORDER BY e.employee_id;
-_________________________________________________________________________________________________________________
+_______________________________________________________________________________________________
 ### 1407. Top Travellers
 select u.name, COALESCE(SUM(r.distance), 0) AS travelled_distance
  from users u left join 
