@@ -71,7 +71,7 @@ JOIN Activity b
    AND a.activity_type = 'start'
    AND b.activity_type = 'end'
 GROUP BY a.machine_id;
-_________________________________________________________________________________________
+______________________________________________________________________________________
 ### 1667 Fix Names in a Table
 select user_id, 
  UPPER(LEFT(name, 1)) + LOWER(SUBSTRING(name, 2, LEN(name))) AS name
@@ -87,7 +87,7 @@ SELECT
 FROM Register r
 GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC
-______________________________________________________________________________________
+____________________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
