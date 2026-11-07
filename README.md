@@ -1154,7 +1154,7 @@ WHERE a.first_half_avg IS NOT NULL
 ORDER BY
     efficiency_improvement DESC,
     d.driver_name ASC;
-_________________________________________________________________________________________________
+______________________________________________________________________________________________
 ### 3642. Find Books with Polarized Opinions
 SELECT
     b.book_id,
@@ -1231,7 +1231,7 @@ WHERE total_orders >= 3
 ORDER BY
     average_rating DESC,
     customer_id DESC;
-__________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 1070. Product Sales Analysis III
 WITH first_sale_year AS (
     SELECT
@@ -1249,7 +1249,7 @@ FROM Sales s
 JOIN first_sale_year f
     ON s.product_id = f.product_id
    AND s.year = f.first_year;
-____________________________________________________________________________________________________
+_________________________________________________________________________________________________
 ### 3808. Find Emotionally Consistent Users
 WITH reaction_counts AS (
     SELECT
