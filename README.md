@@ -199,7 +199,7 @@ select x,y,z,
         ELSE 'No'
     END AS triangle
 FROM Triangle;
-_____________________________________________________________________________________________________________
+_________________________________________________________________________________________________________
 ### 183. Customers Who Never Order
 select c.name as Customers from Customers c left join Orders o on c.id=o.customerId where o.customerid is null
 ______________________________________________________________________________________________________________
@@ -233,7 +233,7 @@ LEFT JOIN Examinations e
     AND e.subject_name = su.subject_name
 group by s.student_id, s.student_name, su.subject_name
 order by student_id, subject_name
-_______________________________________________________________________________________________________________
+____________________________________________________________________________________________________________
 ### 1527. Patients With a Condition
 select patient_id , patient_name , conditions from patients
 where conditions like '% DIAB1%'
@@ -251,7 +251,7 @@ group by product_name having SUM(o.unit)>=100
 ______________________________________________________________________________________________________________
 ### 1693. Daily Leads and Partners
 select date_id, make_name,count(distinct lead_id)  as unique_leads,count(distinct partner_id)   as unique_partners from dailysales group by date_id,make_name
-___________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 178. Rank Scores
 select score, dense_rank() over(order by score desc) as rank from Scores
 ______________________________________________________________________________________________________
