@@ -828,7 +828,7 @@ ORDER BY
     budget DESC,
     h.employee_name ASC
 OPTION (MAXRECURSION 0);
-_________________________________________________________________________________________
+_____________________________________________________________________________________
 ### 550. Game Play Analysis IV
 WITH first_login AS (
 SELECT
@@ -897,7 +897,7 @@ FROM
     GROUP BY m.movie_id, m.title
     ORDER BY AVG(CAST(mr.rating AS FLOAT)) DESC, m.title ASC
 ) B;
-_____________________________________________________________________________________________________
+_________________________________________________________________________________________
 ### 3626. Find Stores with Inventory Imbalance
 WITH ranked_inventory AS (
     SELECT
@@ -952,7 +952,7 @@ JOIN cheapest c
 WHERE c.product_count >= 3
   AND me.most_exp_quantity < c.cheapest_quantity
 ORDER BY imbalance_ratio DESC, s.store_name ASC;
-______________________________________________________________________________________
+___________________________________________________________________________________
 ### 3716. Find Churn Risk Customers
 WITH user_events AS (
     SELECT
