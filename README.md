@@ -111,7 +111,7 @@ CASE
     END AS has_ggg
 FROM Samples
 ORDER BY sample_id;
-______________________________________________________________________________________________
+_______________________________________________________________________________________
 ### 177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
@@ -183,7 +183,7 @@ ________________________________________________________________________________
 select class from courses
 group by class
 having count(class)>=5
-_____________________________________________________________________________________________________________
+____________________________________________________________________________________________________
 ### 577. Employee Bonus
 select e.name, b.bonus  from Employee e left join bonus b
 on e.empid=b.empid where b.bonus<1000
