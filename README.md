@@ -652,7 +652,7 @@ FROM ranked_salary r
 JOIN Department d
 ON r.departmentId = d.id
 WHERE r.salary_rank <= 3;
-________________________________________________________________________________________________
+______________________________________________________________________________________________
 ### 3832. Find Users with Persistent Behavior Patterns
 WITH one_action_days AS (
     SELECT
@@ -828,7 +828,7 @@ ORDER BY
     budget DESC,
     h.employee_name ASC
 OPTION (MAXRECURSION 0);
-_____________________________________________________________________________________
+___________________________________________________________________________________
 ### 550. Game Play Analysis IV
 WITH first_login AS (
 SELECT
