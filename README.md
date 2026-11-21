@@ -630,7 +630,7 @@ FROM category_pairs
 GROUP BY category1, category2
 HAVING COUNT(DISTINCT user_id) >= 3
 ORDER BY customer_count DESC, category1 ASC, category2 ASC;
-________________________________________________________________________________________________
+____________________________________________________________________________________________
 ### 185. Department Top Three Salaries
 WITH ranked_salary AS (
 SELECT
@@ -868,7 +868,7 @@ FROM (
 ) x
 WHERE same_tiv_2015_count > 1
   AND same_location_count = 1;
-___________________________________________________________________________________________________
+____________________________________________________________________________________________
 ### 1341. Movie Rating
 SELECT results
 FROM
@@ -897,7 +897,7 @@ FROM
     GROUP BY m.movie_id, m.title
     ORDER BY AVG(CAST(mr.rating AS FLOAT)) DESC, m.title ASC
 ) B;
-_________________________________________________________________________________________
+____________________________________________________________________________________
 ### 3626. Find Stores with Inventory Imbalance
 WITH ranked_inventory AS (
     SELECT
