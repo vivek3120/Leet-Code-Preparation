@@ -773,7 +773,7 @@ FROM filtered f
 JOIN valid_groups v
 ON f.grp = v.grp
 ORDER BY f.visit_date ASC;
-__________________________________________________________________________________________________
+_____________________________________________________________________________________________
 ### 3482. Analyze Organization Hierarchy
 WITH hierarchy AS (
     SELECT
@@ -1078,7 +1078,7 @@ WHERE l.latest_score > f.first_score
 ORDER BY
     f.student_id ASC,
     f.subject ASC;
-________________________________________________________________________________________
+___________________________________________________________________________________
 ### 3611. Find Overbooked Employees
 WITH weekly_meetings AS (
     SELECT
