@@ -111,7 +111,7 @@ CASE
     END AS has_ggg
 FROM Samples
 ORDER BY sample_id;
-_______________________________________________________________________________________
+_____________________________________________________________________________________
 ### 177. Nth Highest Salary
 CREATE FUNCTION getNthHighestSalary(@N INT) RETURNS INT AS
 BEGIN
@@ -150,16 +150,16 @@ lead(num,2) over (order by id asc) as lnum2
  from logs
 ) k where consecutivenums =lnum1
 and consecutivenums =lnum2
-________________________________________________________________________________________________
+______________________________________________________________________________________________
 ### 584. Find Customer Referee
 select name from Customer where referee_id !=2 or referee_id is null
-_________________________________________________________________________________________________
+_______________________________________________________________________________________________
 ### 586. Customer Placing the Largest Number of Orders
 SELECT top 1 customer_number
 FROM Orders
 GROUP BY customer_number
 ORDER BY COUNT(*) DESC;
-__________________________________________________________________________________________________
+________________________________________________________________________________________________
 ### 607. Sales Person
 SELECT s.name
 FROM SalesPerson s
@@ -175,15 +175,15 @@ ________________________________________________________________________________
 select name, population, area from World where
 area>= 3000000
 or population>= 25000000
-___________________________________________________________________________________________________
+_________________________________________________________________________________________________
 ### 175. Combine Two Tables
 select p.firstName, p.lastName, a.city, a.state from person p left join Address a on a.personid=p.personid
-____________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 596. Classes With at Least 5 Students
 select class from courses
 group by class
 having count(class)>=5
-____________________________________________________________________________________________________
+__________________________________________________________________________________________________
 ### 577. Employee Bonus
 select e.name, b.bonus  from Employee e left join bonus b
 on e.empid=b.empid where b.bonus<1000
