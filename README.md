@@ -33,7 +33,7 @@ LEFT JOIN UnitsSold u
     AND u.purchase_date BETWEEN p.start_date AND p.end_date
 GROUP BY p.product_id;
 
-________________________________________________________________________________________
+_____________________________________________________________________________________
 ### 1731. The Number of Employees Which Report to Each Employee
 select e.employee_id, e.name,count(f.reports_to) as reports_count,floor(avg(f.age+0.5)) as average_age from employees e join employees f on e.employee_id=f.reports_to  
 group by e.employee_id, e.name order by e.employee_id
@@ -87,7 +87,7 @@ SELECT
 FROM Register r
 GROUP BY r.contest_id
 ORDER BY percentage DESC, r.contest_id ASC
-____________________________________________________________________________________
+_______________________________________________________________________________
 ### 3475. DNA Pattern Recognition
 select sample_id , dna_sequence , species , 
 CASE 
@@ -124,7 +124,7 @@ select salary, dense_rank() over (order by salary desc) as dns from Employee
         where dns=@N
     );
 END
-________________________________________________________________________________________
+________________________________________________________________________________
 ### 1873. Calculate Special Bonus
 SELECT 
     employee_id,
