@@ -135,7 +135,7 @@ SELECT
     END AS bonus
 FROM Employees
 ORDER BY employee_id;
-________________________________________________________________________________________
+____________________________________________________________________________________
 ### 196. Delete Duplicate Emails
 DELETE p1
 FROM Person p1
@@ -153,13 +153,13 @@ and consecutivenums =lnum2
 ______________________________________________________________________________________________
 ### 584. Find Customer Referee
 select name from Customer where referee_id !=2 or referee_id is null
-_______________________________________________________________________________________________
+_____________________________________________________________________________________________
 ### 586. Customer Placing the Largest Number of Orders
 SELECT top 1 customer_number
 FROM Orders
 GROUP BY customer_number
 ORDER BY COUNT(*) DESC;
-________________________________________________________________________________________________
+__________________________________________________________________________________________
 ### 607. Sales Person
 SELECT s.name
 FROM SalesPerson s
